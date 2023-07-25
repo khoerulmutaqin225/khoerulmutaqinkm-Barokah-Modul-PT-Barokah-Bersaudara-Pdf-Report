@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+acccess_stock_picking_manager,stock.picking,model_stock_picking,barokah_module.group_report_manager,1,1,1,1
+acccess_stock_picking,stock.picking,model_stock_picking,barokah_module.group_report_user,1,0,0,0
+acccess_stock_move_manager,stock.move,model_stock_move,barokah_module.group_report_manager,1,1,1,1
+acccess_stock_move,stock.move,model_stock_move,barokah_module.group_report_user,1,0,0,0

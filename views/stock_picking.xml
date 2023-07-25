@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <record id="view_picking_form_inherit" model="ir.ui.view">
+        <field name="name">stock.picking.inherit</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form" />
+        <field name="arch" type="xml">
+            <!-- Menambahkan di exiting page -->
+                <xpath expr="/form/header/button[@name='button_validate']" position="after">
+                    <button name="button_multiple_Validate" string="Multiple Validate" type="object"
+                        class="oe_highlight" invisible="1" />
+                    <!--                <button-->
+                    <!--                        name="notATransit"-->
+                    <!--                        string="Non Transit"-->
+                    <!--                        type="object"-->
+                    <!--                        class="oe_highlight"-->
+                    <!--                        attrs="{'invisible':[('second_state','!=','onprogress')] }"-->
+                    <!--                />-->
+                    <!--                <button-->
+                    <!--                        name="buttonTransit"-->
+                    <!--                        string="Transit Ready"-->
+                    <!--                        type="object"-->
+                    <!--                        class="oe_highlight"-->
+                    <!--                        attrs="{'invisible':[('second_state','!=','onprogress')] }"-->
+                    <!--                />-->
+                </xpath>
+                <xpath expr="//field[@name='scheduled_date']" position="before">
+                    <field name="is_editable" invisible="1" />
+                </xpath>
+                <xpath expr="//field[@name='origin']" position="after">
+                    <field name="received_by"
+                        attrs="{'invisible':[('state','not in',('assigned','done'))], 'readonly':[('is_editable','=',False)]}" />
+                </xpath>
+                <xpath expr="//field[@name='user_id']" position="attributes">
+                    <attribute name="string">Nama Penerima</attribute>
+                </xpath>
+                <xpath expr="//field[@name='received_by']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+                <xpath expr="//field[@name='picking_type_id']" position="attributes">
+                    <attribute name="string">Picking Type</attribute>
+                </xpath>
+                <xpath expr="//field[@name='scheduled_date']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+                <!--            <xpath expr="//field[@name='force_date']" position="attributes">-->
+                <!--                <attribute name="invisible">True</attribute>-->
+                <!--            </xpath>-->
+                <xpath expr="//field[@name='origin']" position="attributes">
+                    <attribute name="string">Nomor PO</attribute>
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+                <xpath expr="//field[@name='scheduled_date']" position="attributes">
+                    <attribute name="string">Estimasi Supply</attribute>
+                </xpath>
+                <xpath expr="//field[@name='date_done']" position="attributes">
+                    <attribute name="string">Actual Supply</attribute>
+                </xpath>
+                <xpath expr="//sheet/notebook/page[1]" position="replace">
+
+                </xpath>
+                <xpath expr="//sheet/notebook/page[@name='extra']" position="replace">
+
+                </xpath>
+                <xpath expr="//sheet/notebook/page[@name='note']" position="replace">
+
+                </xpath>
+                <xpath expr="//field[@name='owner_id']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+                <!--            <page expr="//page[@string='Note']" position="attributes">-->
+                <!--                <attribute name="invisible">True</attribute>-->
+                <!--            </page>-->
+                <xpath expr="//field[@name='date_done']" position="after">
+                    <field name="transit_ready_date" invisible="1" />
+                    <field name="second_state" invisible="1" />
+                    <field name="picking_type_code" invisible="1" />
+                    <field name="move_type" invisible="1" />
+                    <field name="company_id" invisible="1" />
+                </xpath>
+                <xpath
+                    expr="//field[@name='move_ids_without_package']/tree//field[@name='product_uom_qty']"
+                    position="attributes">
+                    <attribute name="string">Vol.</attribute>
+                    <attribute name="readonly">True</attribute>
+                </xpath>
+                <xpath
+                    expr="//field[@name='move_ids_without_package']/tree//field[@name='product_uom']"
+                    position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+                <!--            <xpath
+                expr="//field[@name='move_ids_without_package']/tree//field[@name='product_id']"-->
+                <!--                   position="attributes">-->
+                <!--                     <attribute name="invisible">True</attribute>-->
+                <!--            </xpath>-->
+                <xpath
+                    expr="//field[@name='move_ids_without_package']/tree//field[@name='quantity_done']"
+                    position="attributes">
+                    <attribute name="string">Jumlah Supply</attribute>
+                </xpath>
+                <xpath
+                    expr="//field[@name='move_ids_without_package']/tree//field[@name='product_id']"
+                    position="before">
+                    <field name="requested_by" />
+                    <!--                <field name="name_product"/>-->
+                </xpath>
+                <xpath
+                    expr="//field[@name='move_ids_without_package']/tree//field[@name='product_uom_qty']"
+                    position="after">
+                    <field name="product_uom" string="UOM" readonly="1" />
+                </xpath>
+                <xpath
+                    expr="//field[@name='move_ids_without_package']/tree//field[@name='quantity_done']"
+                    position="after">
+                    <field name="sisa_supply" string="Sisa Supply" />
+                    <field name="actual_supply" string="Tanggal Supply" />
+                    <field name="nomor_do" />
+                    <field name="penerima_do" />
+                    <field name="status_list" />
+                    <field name="keterangan_status" string="Status Supply" />
+                    <field name="remark" string="Ket." />
+                </xpath>
+                <xpath
+                    expr="//field[@name='move_ids_without_package']/tree//field[@name='product_uom']"
+                    position="after">
+                    <field name="lokasi_id" invisible="1" />
+                    <field name="date_start" invisible="1" />
+                    <field name="nomor_request" invisible="1" />
+                    <field name="request_accepted_date" invisible="1" />
+                    <field name="vessel_id" invisible="1" />
+                    <field name="divisi_id" invisible="1" />
+                    <field name="project_id" invisible="1" />
+                    <field name="specs" invisible="1" />
+                    <field name="priority" invisible="1" />
+                    <field name="arrival_estimation" invisible="1" />
+                    <field name="date" invisible="1" />
+                    <field name="date_expected" invisible="1" />
+                    <field name="arrival_date" invisible="1" />
+                    <field name="date_done" invisible="1" />
+                    <field name="code_company" invisible="1" />
+                </xpath>
+                <xpath
+                    expr="//field[@name='move_ids_without_package']/tree//field[@name='quantity_done']"
+                    position="attributes">
+                    <attribute name="attrs">{'readonly': [('is_quantity_done_editable', '=', True)]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='picking_type_id']" position="after">
+                    <field name="location_dest_id" />
+                </xpath>
+
+                <xpath expr="//field[@name='origin']" position="after">
+                    <field name="purchase_id" string="Nomor PO" />
+                </xpath>
+
+                <xpath expr="//field[@name='purchase_id']" position="after">
+                    <field name="siap_validate" />
+                </xpath>
+        </field>
+    </record>
+</odoo>
