@@ -1,0 +1,744 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<odoo>
+    <template id="report_purchase_order_inherit" inherit_id="purchase.report_purchaseorder_document">
+        <xpath expr="//t[@t-call='web.external_layout']" position="replace">
+
+            <t t-call="web.external_layout">
+                <t t-set="o" t-value="o.with_context(lang=o.partner_id.lang)"/>
+                <link rel="stylesheet" href="/barokah_module/static/description/src/css/report_purchase_order.css"/>
+                <div class="page">
+                    <div class="oe_structure"/>
+                    <div class="container-fluid border-main-pace">
+
+                        <div class="row brkh-row-main">
+
+
+                            <div class="col brkh-col brkh-center">
+                                <div class="brkh-judul brkh-judul-center font-bold">
+                                    <u>ORDER PEMBELIAN</u>
+                                    <br/>
+                                    <i>PURCHASE ORDER</i>
+                                </div>
+                                <br/>
+                                <div class="row brkh-row-main">
+                                    <div class="col brkh-col litle-child-12">
+                                        <div class="row brkh-row-main brkh-font-3">
+                                            <div class="brkh-col khusus-1 color-table-1 brkh-goyang-miring-kanan border-pace-col-1 padding-right-1 font-bold">
+
+                                                No.PO:
+
+                                            </div>
+                                            <div class="brkh-col khusus-3 color-table-2 brkh-center border-pace-col-1">
+
+                                                <span t-field="o.name"/>
+
+                                            </div>
+                                            <div class="brkh-col khusus-1 color-table-1 brkh-goyang-miring-kanan border-pace-col-1 padding-right-1 font-bold">
+
+                                                Tgl PO/<i>PO Date:</i>
+
+                                            </div>
+                                            <div class="brkh-col khusus-2 color-table-2 brkh-center border-pace-col-2">
+
+                                                <span t-field="o.date_order"/>
+
+                                            </div>
+                                        </div>
+                                        <div class="row brkh-row-main brkh-font-3">
+                                            <div class="brkh-col khusus-1 color-table-1 brkh-goyang-miring-kanan border-pace-col-1 padding-right-1 font-bold">
+
+                                                Kepada/<i>To:</i>
+
+                                            </div>
+                                            <div class="brkh-col khusus-3 color-table-2 brkh-center border-pace-col-1">
+
+                                                <span t-field="o.partner_id"/>
+
+                                            </div>
+                                            <div class="brkh-col khusus-1 color-table-1 brkh-goyang-miring-kanan border-pace-col-1 padding-right-1 font-bold">
+
+                                                Faksimili/<i>Faximile:</i>
+
+                                            </div>
+                                            <div class="brkh-col khusus-2 color-table-2 brkh-center border-pace-col-2">
+
+                                                <span t-field="o.partner_id.phone"/>
+
+                                            </div>
+                                        </div>
+                                        <div class="row brkh-row-main brkh-font-3">
+                                            <div class="brkh-col khusus-1 color-table-1 brkh-goyang-miring-kanan border-pace-col-6 padding-right-1 font-bold">
+
+                                                Alamat/<i>Address:</i>
+
+                                            </div>
+                                            <div class="brkh-col khusus-3 color-table-2 brkh-center border-pace-col-6">
+
+                                                <span t-field="o.partner_id.street"/> <span
+                                                    t-field="o.partner_id.city"/>
+
+                                            </div>
+                                            <div class="brkh-col khusus-1 color-table-1 brkh-goyang-miring-kanan border-pace-col-6 padding-right-1 font-bold">
+
+                                                Telepon/<i>Telephone:</i>
+
+                                            </div>
+                                            <div class="brkh-col khusus-2 color-table-2 brkh-center border-pace-col-4">
+
+                                                <span t-field="o.partner_id.phone"/>
+
+                                            </div>
+                                        </div>
+                                        <div class="row brkh-row-main brkh-font-2">
+                                            <div class="brkh-col khusus-4 color-table-2 brkh-goyang-miring-kiri padding-left-1">
+
+                                                Sesuai dengan Penawaran dari Perusahaan Anda Nomor / <i>as per your
+                                                company's <span t-field="o.option_order"/>:</i> <span
+                                                    t-field="o.partner_ref"/>
+
+                                            </div>
+                                        </div>
+                                        <div class="row brkh-row-main brkh-font-2">
+                                            <div class="brkh-col khusus-5 color-table-2 brkh-goyang-miring-kiri padding-left-1">
+
+                                                Tertanggal / <i>Dated:</i> <span t-field="o.date_vendor"/>
+
+                                            </div>
+                                            <div class="brkh-col khusus-6 color-table-2 brkh-goyang-miring-kanan padding-right-3">
+
+                                                Harap dikirim barang-barang berikut ini / <i>Please deliver there
+                                                items:</i>
+
+                                            </div>
+                                        </div>
+                                        <div class="row brkh-row-main">
+                                            <div class="brkh-col khusus-4 brkh-font-3 color-table-1 brkh-goyang-miring-kiri border-pace-top padding-left-1">
+
+                                                <b>DATA PESANAN PEMBELIAN / PURCHASE ORDER DETAILS</b>
+
+                                            </div>
+                                        </div>
+                                        <t t-if="o.order_line">
+                                            <!--                                            ini adalah thead-->
+                                            <div class="row brkh-row-main brkh-font-2-1 font-bold">
+                                                <div class="brkh-col thead-1 color-table-1 brkh-center border-pace-col-1 center-vertically">
+
+                                                   <p> No.</p>
+
+                                                </div>
+                                                <div class="brkh-col thead-2 color-table-1 brkh-center border-pace-col-1 center-vertically-2">
+
+                                                   Diminta oleh /<br/><i>Requested by</i>
+
+                                                </div>
+                                                <div class="brkh-col thead-3-3-1 color-table-1 brkh-center border-pace-col-1 center-vertically-2">
+
+                                                 <i>Vessel</i><br/><i>Dept / Div</i>
+
+                                                </div>
+                                                <div class="brkh-col thead-4-3 color-table-1 brkh-center border-pace-col-1 center-vertically">
+
+                                                    <p>Proyek /<i>Project</i></p>
+
+                                                </div>
+                                                <div class="brkh-col thead-4 color-table-1 brkh-center border-pace-col-1 center-vertically-3">
+
+                                                    <p>Kode<br/>Anggaran /<br/><i>Budget Code</i></p>
+
+                                                </div>
+                                                <div class="brkh-col thead-3-2-1 color-table-1 brkh-center border-pace-col-1 center-vertically-3">
+
+                                                    <p>Prioritas /<br/><i>Priority*</i><br/>(L/M/H)</p>
+
+                                                </div>
+                                                <div class="brkh-col thead-4-2 color-table-1 brkh-center border-pace-col-1 center-vertically">
+
+                                                   <p> Uraian /<i>Description</i></p>
+
+                                                </div>
+                                                <div class="brkh-col thead-5 color-table-1 brkh-center border-pace-col-1 center-vertically">
+
+                                                    <p>Jenis /<i>Type</i></p>
+
+                                                </div>
+                                                <div class="brkh-col thead-6-2 color-table-1 brkh-center border-pace-col-1 center-vertically">
+
+                                                    <p>Vol.</p>
+
+                                                </div>
+                                                <div class="brkh-col thead-6 color-table-1 brkh-center border-pace-col-1 center-vertically">
+
+                                                    <p>Sat.</p>
+
+                                                </div>
+                                                <div class="brkh-col thead-3-3 color-table-1 brkh-center border-pace-col-1 center-vertically-3-1">
+
+                                                    <p>Lokasi<br/>Supply /<br/><i>Supply</i><br/><i>Location</i></p>
+
+                                                </div>
+                                                <div class="brkh-col thead-2-2 color-table-1 brkh-center border-pace-col-1 center-vertically-2">
+
+                                                    <p>Harga Satuan /<br/><i>Unit Price (Rp.)</i></p>
+
+                                                </div>
+                                                <div class="brkh-col thead-2-2 color-table-1 brkh-center border-pace-top center-vertically-2">
+
+                                                    <p>Jumlah Harga /<br/><i>Total Price (Rp.)</i></p>
+
+                                                </div>
+                                            </div>
+                                            <!--                                            ini adalah tbody-->
+                                            <t t-set="i" t-value="1"/>
+                                            <t t-foreach="o.order_line" t-as="order_ids">
+                                                <t t-if="order_ids.status_list == 'cancel'">
+                                                    <div class="row brkh-row-main brkh-font-strikethrough">
+                                                       <div class="brkh-col tbody-1 color-table-2 border-pace-col-1 center-vertically-4">
+                                                           <span style="display: inline-block; vertical-align: middle;" t-esc="i"/>
+                                                        </div>
+                                                        <t t-set="i" t-value="i+1"/>
+                                                        <div class="brkh-col tbody-2 color-table-2 brkh-center border-pace-col-1">
+                                                            <span style="vertical-align: middle;" t-field="order_ids.requested_by"/>
+                                                        </div>
+                                                        <div class="brkh-col tbody-3-3-1 color-table-2 brkh-center border-pace-col-1">
+                                                           <t t-if="order_ids.divisi_id.parent_id.name == 'KAPAL'">
+                                                                <span style="vertical-align: middle;" t-field="order_ids.vessel_id.code_vessel"/>
+                                                            </t>
+                                                            <t t-if="order_ids.divisi_id.parent_id.name == 'DARAT'">
+                                                                <span style="vertical-align: middle;" t-field="order_ids.divisi_id.department_code"/>
+                                                            </t>
+                                                        </div>
+                                                        <div class="brkh-col tbody-4-3 color-table-2 brkh-center border-pace-col-1">
+
+                                                            <span style="vertical-align: middle;" t-field="order_ids.project_id.name"/>
+
+                                                        </div>
+                                                        <div class="brkh-col tbody-4 color-table-2 brkh-center border-pace-col-1">
+
+                                                            <span style="vertical-align: middle;" t-field="order_ids.code_budget_id.name"/>
+
+                                                        </div>
+                                                        <div class="brkh-col tbody-3-2-1 color-table-2 brkh-center border-pace-col-1">
+                                                            
+                                                            <span style="vertical-align: middle;" t-field="order_ids.priority"/>
+
+                                                        </div>
+                                                        <div class="brkh-col tbody-4-2 color-table-2 brkh-goyang-miring-kiri border-pace-col-1">
+                                                            <t t-if="order_ids.is_sb == True">
+                                                                <span style="vertical-align: middle;" t-field="order_ids.name_product"/> (SB)
+                                                            </t>
+                                                            <t t-if="order_ids.is_sb == False">
+                                                                <span style="vertical-align: middle;" t-field="order_ids.name_product"/>
+                                                            </t>
+                                                        </div>
+                                                        <div class="brkh-col tbody-5 color-table-2 brkh-center border-pace-col-1">
+                                                            <span style="vertical-align: middle;" t-field="order_ids.specs"/>
+                                                        </div>
+                                                        <div class="brkh-col tbody-6-2 color-table-2 brkh-center border-pace-col-1">
+
+                                                            <span style="vertical-align: middle;" t-field="order_ids.product_qty"/>
+
+                                                        </div>
+                                                        <div class="brkh-col tbody-6 color-table-2 brkh-center border-pace-col-1">
+
+                                                            <span style="vertical-align: middle;" t-field="order_ids.product_uom_id.name"/>
+
+                                                        </div>
+                                                        <div class="brkh-col tbody-3-3 color-table-2 brkh-center border-pace-col-1">
+
+                                                                <span style="vertical-align: middle;" t-field="order_ids.lokasi_id.kode_supply"/>
+
+                                                        </div>
+                                                        <div class="brkh-col tbody-2-2 color-table-2 brkh-goyang-miring-kiri border-pace-col-1">
+                                                            <t t-if="order_ids.price_unit == 0">
+                                                                <td style="vertical-align: middle;"><span t-field="o.currency_id.symbol"/>. -</td>
+                                                            </t>
+                                                            <t t-if="order_ids.price_unit > 0">
+                                                                <span style="vertical-align: middle;" t-field="order_ids.price_unit"/>
+                                                            </t>
+                                                        </div>
+                                                        <div class="brkh-col tbody-2-2 color-table-2 brkh-goyang-miring-kiri border-pace-top">
+                                                            <t t-if="order_ids.price_subtotal == 0">
+                                                                <td style="vertical-align: middle;"><span t-field="o.currency_id.symbol"/>. -</td>
+                                                            </t>
+                                                            <t t-if="order_ids.price_subtotal > 0">
+                                                                <span style="vertical-align: middle;" t-field="order_ids.price_subtotal"/>
+                                                            </t>
+                                                        </div>
+                                                    </div>
+                                                </t>
+                                                <t t-if="order_ids.status_list != 'cancel'">
+                                                    <div class="row brkh-row-main brkh-font-3">
+                                                       <div class="brkh-col tbody-1 color-table-2 border-pace-col-1 center-vertically-4">
+                                                           <span style="display: inline-block; vertical-align: middle;" t-esc="i"/>
+                                                        </div>
+                                                        <t t-set="i" t-value="i+1"/>
+                                                        <div class="brkh-col tbody-2 color-table-2 brkh-center border-pace-col-1">
+
+                                                            <span style="vertical-align: middle;" t-field="order_ids.requested_by"/>
+
+
+                                                        </div>
+                                                        <div class="brkh-col tbody-3-3-1 color-table-2 brkh-center border-pace-col-1">
+                                                            <t t-if="order_ids.divisi_id.parent_id.name == 'KAPAL'">
+                                                                <span style="vertical-align: middle;" t-field="order_ids.vessel_id.code_vessel"/>
+                                                            </t>
+                                                            <t t-if="order_ids.divisi_id.parent_id.name == 'DARAT'">
+                                                                <span style="vertical-align: middle;" t-field="order_ids.divisi_id.department_code"/>
+                                                            </t>
+                                                        </div>
+                                                        <div class="brkh-col tbody-4-3 color-table-2 brkh-center border-pace-col-1">
+
+                                                            <span style="vertical-align: middle;" t-field="order_ids.project_id"/>
+
+                                                        </div>
+                                                        <div class="brkh-col tbody-4 color-table-2 brkh-center border-pace-col-1">
+
+                                                            <span style="vertical-align: middle;" t-field="order_ids.code_budget_id.name"/>
+
+                                                        </div>
+                                                        <div class="brkh-col tbody-3-2-1 color-table-2 brkh-center border-pace-col-1">
+
+                                                            <span style="vertical-align: middle;" t-field="order_ids.priority"/>
+
+                                                        </div>
+                                                        <div class="brkh-col tbody-4-2 color-table-2 brkh-goyang-miring-kiri border-pace-col-1">
+                                                             <t t-if="o.sbkah == True">
+                                                                <span style="vertical-align: middle;" t-field="order_ids.name_product"/> (SB)
+                                                            </t>
+                                                            <t t-if="o.sbkah == False">
+                                                                <span style="vertical-align: middle;" t-field="order_ids.name_product"/>
+                                                            </t>
+                                                        </div>
+                                                        <div class="brkh-col tbody-5 color-table-2 brkh-center border-pace-col-1">
+                                                            <!-- <t t-if="order_ids.merk_barang is False"> -->
+<!--                                                                 <![CDATA[ -->
+<!--                                                                     &nbsp; -->
+<!--                                                                 ]]> -->
+                                                            <!-- </t> -->
+                                                            <!-- <t t-if="order_ids.merk_barang is not False"> -->
+                                                                <!-- <span t-field="order_ids.merk_barang"/> -->
+                                                            <!-- </t> -->
+
+                                                            <!-- <t t-if="order_ids.model_barang is False"> -->
+                                                                <!-- <![CDATA[ -->
+                                                                    <!-- &nbsp; -->
+                                                                <!-- ]]> -->
+                                                            <!-- </t> -->
+                                                            <!-- <t t-if="order_ids.model_barang is not False"> -->
+                                                                <!-- <span t-field="order_ids.model_barang"/> -->
+                                                            <!-- </t> -->
+                                                            <!--                                                        batas-->
+                                                            <!-- <t t-if="order_ids.nomor_seri is False"> -->
+                                                                <!-- <![CDATA[ -->
+                                                                    <!-- &nbsp; -->
+                                                                <!-- ]]> -->
+                                                            <!-- </t> -->
+                                                            <!-- <t t-if="order_ids.nomor_seri is not False"> -->
+                                                                <!-- [<span t-field="order_ids.nomor_seri"/>] -->
+                                                            <!-- </t> -->
+                                                            <span style="vertical-align: middle;" t-field="order_ids.specs"/>
+                                                        </div>
+                                                        <div class="brkh-col tbody-6-2 color-table-2 brkh-center border-pace-col-1">
+
+                                                            <span style="vertical-align: middle;" t-field="order_ids.product_qty"/>
+
+                                                        </div>
+                                                        <div class="brkh-col tbody-6 color-table-2 brkh-center border-pace-col-1">
+
+                                                            <span style="vertical-align: middle;" t-field="order_ids.product_uom_id.name"/>
+
+                                                        </div>
+                                                        <div class="brkh-col tbody-3-3 color-table-2 brkh-center border-pace-col-1">
+
+                                                            <span style="vertical-align: middle;" t-field="order_ids.lokasi_id.kode_supply"/>
+
+                                                        </div>
+                                                        <div class="brkh-col tbody-2-2 color-table-2 brkh-goyang-miring-kiri border-pace-col-1">
+                                                            <t t-if="order_ids.price_unit == 0">
+                                                                <td style="vertical-align: middle;"><span t-field="o.currency_id.symbol"/>. -</td>
+                                                            </t>
+                                                            <t t-if="order_ids.price_unit > 0">
+                                                               <span style="vertical-align: middle;" t-field="order_ids.price_unit"/>
+                                                            </t>
+                                                        </div>
+                                                        <div class="brkh-col tbody-2-2 color-table-2 brkh-goyang-miring-kiri border-pace-top">
+                                                            <t t-if="order_ids.price_subtotal == 0">
+                                                                <td style="vertical-align: middle;"><span t-field="o.currency_id.symbol"/>. -</td>
+                                                            </t>
+                                                            <t t-if="order_ids.price_subtotal > 0">
+                                                                <span style="vertical-align: middle;" t-field="order_ids.price_subtotal"/>
+                                                            </t>
+                                                        </div>
+                                                    </div>
+                                                </t>
+                                            </t>
+                                            <!--                                                row kosong-->
+                                            <t t-if="i &lt; 6">
+                                                <t t-foreach="[1,2,3,4,5,6,7,8,9,10]" t-as="j">
+                                                    <div class="row brkh-row-main brkh-font-3-white">
+                                                        <div class="brkh-col tbody-1 color-table-2 brkh-center border-pace-col-1">
+                                                            <td><span t-esc="j"/></td>
+                                                        </div>
+                                                        <div class="brkh-col tbody-2 color-table-2 brkh-center border-pace-col-1">
+                                                            <td><span t-esc="j"/></td>
+                                                        </div>
+                                                        <div class="brkh-col tbody-3-3-1 color-table-2 brkh-center border-pace-col-1">
+                                                            <td><span t-esc="j"/></td>
+                                                        </div>
+                                                        <div class="brkh-col tbody-4-3 color-table-2 brkh-center border-pace-col-1">
+                                                            <td><span t-esc="j"/></td>
+                                                        </div>
+                                                        <div class="brkh-col tbody-4 color-table-2 brkh-center border-pace-col-1">
+                                                            <td><span t-esc="j"/></td>
+                                                        </div>
+                                                        <div class="brkh-col tbody-3-2-1 color-table-2 brkh-center border-pace-col-1">
+                                                            <td><span t-esc="j"/></td>
+                                                        </div>
+                                                        <div class="brkh-col tbody-4-2 color-table-2 brkh-goyang-miring-kiri border-pace-col-1">
+                                                            <td><span t-esc="j"/></td>
+                                                        </div>
+                                                        <div class="brkh-col tbody-5 color-table-2 brkh-center border-pace-col-1">
+                                                            <td><span t-esc="j"/></td>
+                                                        </div>
+                                                        <div class="brkh-col tbody-6-2 color-table-2 brkh-center border-pace-col-1">
+                                                            <td><span t-esc="j"/></td>
+                                                        </div>
+                                                        <div class="brkh-col tbody-6 color-table-2 brkh-center border-pace-col-1">
+                                                            <td><span t-esc="j"/></td>
+                                                        </div>
+                                                        <div class="brkh-col tbody-3-3 color-table-2 brkh-center border-pace-col-1">
+                                                            <td><span t-esc="j"/></td>
+                                                        </div>
+                                                        <div class="brkh-col tbody-2-2 color-table-2 brkh-goyang-miring-kiri border-pace-col-1">
+                                                            <td><span t-esc="j"/></td>
+                                                        </div>
+                                                        <div class="brkh-col tbody-2-2 color-table-2 brkh-goyang-miring-kiri border-pace-top">
+                                                            <td><span t-esc="j"/></td>
+                                                        </div>
+                                                    </div>
+                                                </t>
+                                            </t>
+                                            <!--                                                row kosong-->
+<!--                                            <t t-if="i &gt; 5 &amp; i &lt; 11">-->
+<!--                                                <t t-foreach="[1,2,3,4,5]" t-as="j">-->
+<!--                                                    <div class="row brkh-row-main brkh-font-3-white">-->
+<!--                                                        <div class="brkh-col tbody-1 color-table-2 brkh-center border-pace-col-1 padding-center-4-2">-->
+<!--                                                            <td><span t-esc="j"/></td>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="brkh-col tbody-2 color-table-2 brkh-center border-pace-col-1 padding-center-4-2">-->
+<!--                                                            <td><span t-esc="j"/></td>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="brkh-col tbody-3-3-1 color-table-2 brkh-center border-pace-col-1 padding-center-4-2">-->
+<!--                                                            <td><span t-esc="j"/></td>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="brkh-col tbody-4-3 color-table-2 brkh-center border-pace-col-1 padding-center-4-2">-->
+<!--                                                            <td><span t-esc="j"/></td>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="brkh-col tbody-4 color-table-2 brkh-center border-pace-col-1 padding-center-4-2">-->
+<!--                                                            <td><span t-esc="j"/></td>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="brkh-col tbody-3-2-1 color-table-2 brkh-center border-pace-col-1 padding-center-4-2">-->
+<!--                                                            <td><span t-esc="j"/></td>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="brkh-col tbody-4-2 color-table-2 brkh-goyang-miring-kiri border-pace-col-1 padding-center-4-2">-->
+<!--                                                            <td><span t-esc="j"/></td>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="brkh-col tbody-5 color-table-2 brkh-center border-pace-col-1 padding-center-4">-->
+<!--                                                            <td><span t-esc="j"/></td>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="brkh-col tbody-6-2 color-table-2 brkh-center border-pace-col-1 padding-center-4-2">-->
+<!--                                                            <td><span t-esc="j"/></td>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="brkh-col tbody-6 color-table-2 brkh-center border-pace-col-1 padding-center-4-2">-->
+<!--                                                            <td><span t-esc="j"/></td>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="brkh-col tbody-3-3 color-table-2 brkh-center border-pace-col-1 padding-center-4-2">-->
+<!--                                                            <td><span t-esc="j"/></td>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="brkh-col tbody-2-2 color-table-2 brkh-goyang-miring-kiri border-pace-col-1 padding-center-4-2">-->
+<!--                                                            <td><span t-esc="j"/></td>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="brkh-col tbody-2-2 color-table-2 brkh-goyang-miring-kiri border-pace-top padding-center-4-2">-->
+<!--                                                            <td><span t-esc="j"/></td>-->
+<!--                                                        </div>-->
+<!--                                                    </div>-->
+<!--                                                </t>-->
+<!--                                            </t>-->
+                                            <!--                                            ini adalah note untuk order-->
+                                            <t t-foreach="o.remarks_order" t-as="remark">
+                                                <t t-if="remark.warna_remark == 'biru'">
+                                                <div class="row brkh-row-main">
+                                                    <div class="brkh-col tbody-15 color-table-2 border-pace-col-1 brkh-font-3-blue padding-center-4 brkh-goyang-miring-kiri font-bold">
+                                                        <i>Note: <span t-field="remark.name"/> <span
+                                                                t-field="remark.date_remark"/> <span
+                                                                t-field="remark.remark"/></i>
+                                                    </div>
+                                                    <div class="brkh-col tbody-2-2 color-table-2 border-pace-top brkh-font-3-red">
+                                                        <!--ini emang kosong--><br/>
+                                                    </div>
+                                                </div>
+                                                </t>
+                                                <t t-if="remark.warna_remark == 'merah'">
+                                                <div class="row brkh-row-main">
+                                                    <div class="brkh-col tbody-15 color-table-2 border-pace-col-1 brkh-font-3-red padding-center-4 brkh-goyang-miring-kiri font-bold">
+                                                        <i>Note: <span t-field="remark.name"/> <span
+                                                                t-field="remark.date_remark"/> <span
+                                                                t-field="remark.remark"/></i>
+                                                    </div>
+                                                    <div class="brkh-col tbody-2-2 color-table-2 border-pace-top brkh-font-3-red">
+                                                        <!--ini emang kosong--><br/>
+                                                    </div>
+                                                </div>
+                                                </t>
+                                            </t>
+                                            <!--                                            <div class="row brkh-row-main">-->
+                                            <!--                                                <div class="brkh-col tbody-15 color-table-2 border-pace-col-6 brkh-font-3">-->
+                                            <!--                                                    <![CDATA[-->
+                                            <!--                                                        &nbsp;-->
+                                            <!--                                                    ]]>-->
+                                            <!--                                                </div>-->
+                                            <!--                                                <div class="brkh-col tbody-2-2 color-table-2 border-pace-col-4 brkh-font-3">-->
+                                            <!--                                                    <![CDATA[-->
+                                            <!--                                                        &nbsp;-->
+                                            <!--                                                    ]]>-->
+                                            <!--                                                </div>-->
+                                            <!--                                            </div>-->
+                                            <div class="row brkh-row-main brkh-font-3-2 font-bold">
+                                                <div class="brkh-col tbody-15 color-table-2 brkh-center border-pace-col-6">
+                                                    Harga Total / <i> Total Price</i>
+                                                </div>
+                                                <div class="brkh-col tbody-2-2 color-table-2 brkh-goyang-miring-kiri border-pace-col-4 padding-center-4">
+
+                                                    <span t-field="o.amount_untaxed"/>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="row brkh-row-main">
+                                                <div class="brkh-col tbody-7 color-table-2 border-pace-col-0 padding-center-left brkh-font-5 brkh-goyang-miring-kiri">
+                                                    Catatan / <i> Note:</i>
+                                                </div>
+                                                <div class="brkh-col tbody-2 color-table-1 brkh-center border-pace-col-7 brkh-font-3-2 padding-center-2-2">
+
+                                                    Discount
+
+                                                </div>
+                                                <div class="brkh-col tbody-3-2 color-table-1 border-pace-col-7 padding-center-4 brkh-font-3-2">
+
+                                                    <!--ini emang kosong-->
+                                                </div>
+                                                <div class="brkh-col tbody-6 color-table-2 brkh-center border-pace-col-7 font-bold brkh-font-3-2 padding-center-2-2">
+
+                                                    0%
+
+                                                </div>
+                                                <div class="brkh-col tbody-8 color-table-2 border-pace-col-7 padding-center-4 brkh-font-3">
+
+                                                    <!--ini emang kosong-->
+                                                </div>
+                                                <div class="brkh-col tbody-2-2 color-table-2 border-pace-col-7 padding-center-4 brkh-font-3">
+
+                                                    <!--ini emang kosong-->
+                                                </div>
+                                            </div>
+                                            <div class="row brkh-row-main">
+                                                <div class="brkh-col tbody-7 color-table-2 border-pace-col-0 padding-center-1 brkh-font-5 brkh-goyang-miring-kiri">
+                                                    *) Kategori risiko item yang diminta (L=Low, M=Medium, H=High). Item
+                                                    dengan kategori High atau tingyaitu jika terlambat pengadaannya
+                                                    dapat menyebabkan kecelakaan, kerusakan atau pencemaran/tumpahan
+                                                    minyak. Untuk segera dikirimkan.
+                                                </div>
+                                                <div class="brkh-col tbody-2 color-table-2 border-pace-col-7 padding-center-4 brkh-font-3">
+
+                                                    <!--ini emang kosong-->
+                                                </div>
+                                                <div class="brkh-col tbody-9 color-table-2 border-pace-col-7 padding-center-4 brkh-font-3">
+
+                                                    <!--ini emang kosong-->
+                                                </div>
+                                                <div class="brkh-col tbody-2-2 color-table-2 border-pace-col-7 padding-center-4 brkh-font-3">
+                                                    <!--ini emang kosong-->
+
+                                                </div>
+                                            </div>
+                                            <div class="row brkh-row-main">
+                                                <div class="brkh-col tbody-7 color-table-2 border-pace-col-0 padding-center-1 brkh-font-5 brkh-goyang-miring-kiri">
+                                                    / <i>Risk category of requested items (L=Low, M=Medium, H=High).
+                                                    Item with high risk category means in case any delay in delivery may
+                                                    result an accident, damage or pollution/oil spill. Must be delivered
+                                                    as soon as posible</i>
+                                                </div>
+                                                <div class="brkh-col tbody-2 color-table-1 brkh-center border-pace-col-7 brkh-font-3-2 padding-center-2-2">
+
+                                                    PPN /<i> VAT</i>
+
+                                                </div>
+                                                <div class="brkh-col tbody-3-2 color-table-1 border-pace-col-7 padding-center-4 brkh-font-3-2">
+                                                    <!--ini emang kosong-->
+
+                                                </div>
+                                                <div class="brkh-col tbody-6 color-table-2 brkh-center border-pace-col-7 font-bold brkh-font-3-2 padding-center-2-2">
+                                                    <t t-if="o.taxes_id">
+                                                        <span t-field="o.taxes_id.amount"/>%
+                                                    </t>
+                                                </div>
+                                                <div class="brkh-col tbody-8 color-table-2 border-pace-col-7 padding-center-4 brkh-font-3-2">
+
+                                                    <!--ini emang kosong-->
+                                                </div>
+                                                <div class="brkh-col tbody-2-2 color-table-2 border-pace-col-7 brkh-goyang-miring-kiri padding-center-4 brkh-font-3-2 font-bold">
+                                                    <t t-if="o.amount_tax > 0">
+                                                        <span t-field="o.amount_tax"/>
+                                                    </t>
+                                                </div>
+                                            </div>
+                                            <div class="row brkh-row-main">
+                                                <div class="brkh-col tbody-7 color-table-2 border-pace-bottom padding-center-1 brkh-font-5 brkh-goyang-miring-kiri">
+                                                    **) Semua bahan kimia berbahay wajib disertai MSDS. Beri tanda
+                                                    &#8730; . <i>all dangerous chemical substances must be completed
+                                                    with MSDS. Put &#8730; sign.</i>
+                                                </div>
+                                                <div class="brkh-col tbody-10 color-table-1 brkh-center border-pace-col-7 font-bold brkh-font-3-2 padding-center-2">
+
+                                                    HARGA TOTAL
+
+                                                </div>
+                                                <div class="brkh-col tbody-2-2 color-table-2 border-pace-col-7 brkh-font-3-2 brkh-goyang-miring-kiri font-bold padding-center-2">
+                                                    <t t-if="o.amount_total > 0">
+                                                        <span t-field="o.amount_total"/>
+                                                    </t>
+                                                </div>
+                                            </div>
+                                            <div class="row brkh-row-main brkh-font-3-2 font-bold">
+                                                <div class="brkh-col khusus-4 color-table-2 padding-center-1 border-pace-bottom brkh-goyang-miring-kiri">
+                                                    Terbilang / <i>In number:</i>
+                                                </div>
+                                            </div>
+                                            <div class="row brkh-row-main">
+                                                <div class="brkh-col tbody-11 color-table-1 border-pace-col-8 brkh-font-3-2 padding-center-1 brkh-goyang-miring-kiri font-bold">
+                                                    Jadwal Pembayaran / <i> Payment Shedule:</i>
+                                                </div>
+                                                <div class="brkh-col tbody-12 color-table-2 brkh-center border-pace-bottom brkh-font-3-2 padding-center-4 brkh-center">
+
+                                                    (A). 1 Minggu
+
+                                                </div>
+                                                <div class="brkh-col tbody-12 color-table-2 border-pace-bottom padding-center-4 brkh-font-3-2 brkh-center">
+
+                                                    (B). 2 Minggu
+
+                                                </div>
+                                                <div class="brkh-col tbody-12 color-table-2 border-pace-bottom brkh-font-3-2 padding-center-4 brkh-center">
+
+                                                    (C). 1 Bulan
+
+                                                </div>
+                                                <div class="brkh-col tbody-12 color-table-2 border-pace-bottom padding-center-4 brkh-font-3-2 brkh-center">
+
+                                                    (D). 2 Bulan
+
+                                                </div>
+                                            </div>
+                                            <div class="row brkh-row-main">
+                                                <div class="brkh-col tbody-11 color-table-1 border-pace-col-8 brkh-font-3-2 padding-center-1 brkh-goyang-miring-kiri font-bold">
+                                                    Cara Pembayaran / <i> Payment Method:</i>
+                                                </div>
+                                                <div class="brkh-col tbody-12 color-table-2 brkh-center border-pace-bottom brkh-font-3-2 padding-center-4 brkh-center">
+
+                                                    (A). Tunai / <i> Cash</i>
+
+                                                </div>
+                                                <div class="brkh-col tbody-13 color-table-2 border-pace-bottom padding-center-4 brkh-font-3-2 brkh-center">
+
+                                                    (B). Transfer Rekening / <i> Account Transfer</i>
+
+                                                </div>
+                                                <div class="brkh-col tbody-12 color-table-2 border-pace-bottom brkh-font-3-2 padding-center-4 brkh-center">
+
+                                                    (C). Cheque
+
+                                                </div>
+                                            </div>
+                                            <div class="row brkh-row-main font-bold">
+                                                <div class="brkh-col tbody-11 color-table-1 border-pace-col-8 brkh-font-3-2 padding-center-1 brkh-goyang-miring-kiri">
+                                                    Dibuat oleh / <i> Prepared by:</i>
+                                                </div>
+                                                <div class="brkh-col tbody-14 color-table-1 brkh-center border-pace-bottom brkh-font-3-2 padding-center-4 brkh-center">
+
+                                                    Disetujui oleh / <i> Approved by:</i>
+
+                                                </div>
+                                            </div>
+                                            <div class="row brkh-row-main">
+                                                <div class="brkh-col tbody-11 color-table-2 border-pace-col-8 padding-center-6">
+                                                    <br/><br/>
+                                                    <img t-attf-src="data:image/*;base64,{{o.sign_log_admin}}"
+                                                     t-att-alt="o.sign_log_admin" style="width: 250px;"/>
+                                                    <br/>
+                                                    <!--                                                   tanda tangan corporate logistik admin-->
+                                                </div>
+                                                <div class="brkh-col tbody-13 color-table-2 brkh-center border-pace-col-8 padding-center-6">
+                                                    <br/><br/>
+                                                    <img t-attf-src="data:image/*;base64,{{o.sign_corlog}}"
+                                                     t-att-alt="o.sign_corlog" style="width: 250px;"/>
+                                                    <br/>
+                                                    <!--                                                   tanda tangan corporate logistik-->
+
+                                                </div>
+                                                <div class="brkh-col tbody-13 color-table-2 brkh-center border-pace-bottom padding-center-6">
+                                                    <br/><br/>
+                                                    <!--                                                   mark it down tanda tangan business unit pic-->
+                                                    <img t-attf-src="data:image/*;base64,{{o.sign_bisnis_pic}}"
+                                                     t-att-alt="o.sign_bisnis_pic" style="width: 250px;"/>
+                                                    <br/>
+                                                </div>
+                                            </div>
+                                            <div class="row brkh-row-main font-bold">
+                                                <div class="brkh-col tbody-11 color-table-1 border-pace-col-8 brkh-center brkh-font-3-2">
+                                                    <i>Corporate Logistic Admin</i>
+                                                </div>
+                                                <div class="brkh-col tbody-13 color-table-1 brkh-center border-pace-col-8 brkh-center brkh-font-3-2">
+                                                    <i>Corporate Logistic</i>
+                                                </div>
+                                                <div class="brkh-col tbody-13 color-table-1 brkh-center border-pace-bottom brkh-center brkh-font-3-2">
+                                                    <i>Business Unit PIC</i>
+                                                </div>
+                                            </div>
+                                        </t>
+                                        <!--                                        <div class="row brkh-row-main font-bold">-->
+                                        <!--                                            <div class="brkh-col khusus-4 color-table-2 padding-center-1 brkh-goyang-miring-kiri brkh-font-6 border-pace-col-0">-->
+                                        <!--                                                <i>@Copyright PT.Barokah Perkasa Group</i>-->
+                                        <!--                                            </div>-->
+                                        <!--                                        </div>-->
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <br></br>
+                            <br></br>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <div class="row brkh-row-main brkh-font-3">
+                            <div class="brkh-col khusus-4 color-table-2 border-pace-col-0">
+                                <br/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="oe_structure"/>
+                </div>
+
+            </t>
+        </xpath>
+    </template>
+    <template id="report_purchaseorder">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="barokah_module.report_purchase_order_inherit" t-lang="o.partner_id.lang"/>
+            </t>
+        </t>
+    </template>
+
+</odoo>

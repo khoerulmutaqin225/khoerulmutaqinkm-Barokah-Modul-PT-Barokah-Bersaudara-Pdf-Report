@@ -1,0 +1,1561 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="report_purchase_inherit" inherit_id="purchase_request.report_purchase_request">
+        <xpath expr="//div[@class='page']" position="replace">
+            <link rel="stylesheet" href="/barokah_module/static/description/src/css/report_purchase_request.css"/>
+            <div class="page">
+                <div class="oe_structure"/>
+                <t t-if="o.form_type == 'darat'">
+                    <header>
+                        <div class="row brkh-row-main">
+                            <div class="brkh-col brkh-col color-table-2 brkh-font-5 border-pace-col-0 padding-right-3 brkh-goyang-miring-kanan">
+                                CORLOG-FR-02-01-ROO
+                            </div>
+                        </div>
+                    </header>
+                    <div class="container-fluid border-main-pace">
+                        <div class="row brkh-row-main">
+                            <div class="col brkh-col brkh-center">
+                                <div class="brkh-judul brkh-judul-center font-bold">
+                                    <u>FORM PERMINTAAN KANTOR</u>
+                                    <br/>
+                                    <i>OFFICE REQUESTION FORM</i>
+                                </div>
+                                <br></br>
+                                <div class="row brkh-row-main no-gutter">
+                                    <div class="col brkh-col khusus-10">
+                                        <!--                                        row pertama-->
+                                        <div class="row brkh-row-main brkh-font-3">
+                                            <div class="brkh-col khusus-1 color-table-2 brkh-goyang-miring-kiri border-pace-col-1 padding-left-top-1 font-bold">
+
+                                                <u>Bisnis Unit</u>
+
+                                            </div>
+                                            <div class="brkh-col khusus-2 color-table-2 brkh-goyang-miring-kiri padding-left-top-2 border-pace-col-1 border-pace-col-8">
+                                                : <span t-field="o.bisnis_unit"/>
+
+                                            </div>
+                                            <div class="brkh-col khusus-1 color-table-2 brkh-goyang-miring-kiri border-pace-col-1 padding-left-top-3 font-bold">
+
+                                                <u>Tanggal</u>
+
+                                            </div>
+                                            <div class="brkh-col khusus-2 color-table-2 brkh-goyang-miring-kiri padding-left-top-2 border-pace-col-1 border-pace-bottom">
+                                                : <span t-field="o.date_start"/>
+
+                                            </div>
+                                        </div>
+                                        <div class="row brkh-row-main brkh-font-3">
+                                            <div class="brkh-col khusus-1 color-table-2 brkh-goyang-miring-kiri padding-left-2 font-bold">
+
+                                                <i>Business Unit </i>
+
+                                            </div>
+                                            <div class="brkh-col khusus-2 color-table-2">
+
+                                                <!--ini emang kosong-->
+                                            </div>
+                                            <div class="brkh-col khusus-1 color-table-2 brkh-goyang-miring-kiri padding-left-4 font-bold">
+
+                                                <i>Date </i>
+
+                                            </div>
+                                            <div class="brkh-col khusus-2 color-table-2">
+                                                <!--ini emang kosong-->
+
+                                            </div>
+                                        </div>
+                                        <!--                                        row kedua-->
+                                        <div class="row brkh-row-main brkh-font-3">
+                                            <div class="brkh-col khusus-1 color-table-2 brkh-goyang-miring-kiri padding-left-2 font-bold">
+
+                                                <u>Divisi/Department</u>
+
+                                            </div>
+                                            <div class="brkh-col khusus-2 color-table-2 brkh-goyang-miring-kiri padding-left-1 border-pace-col-8">
+
+                                                : <span t-field="o.divisi_id"/>
+                                            </div>
+                                            <div class="brkh-col khusus-1 color-table-2 brkh-goyang-miring-kiri padding-left-4 font-bold">
+
+                                                <u>Lokasi</u>
+
+                                            </div>
+                                            <!--                                            set ceklis 1-->
+                                            <div class="brkh-col khusus-2-1 color-table-2 brkh-goyang-miring-kiri padding-left-1 brkh-font-3">
+                                                :
+                                            </div>
+                                            <div class="brkh-col khusus-2-2 color-table-2 brkh-center brkh-goyang-miring-kiri padding-left-top-4 brkh-font-3 border-pace-col-3">
+                                                Jakarta
+                                            </div>
+                                            <div class="brkh-col khusus-2-3 color-table-2 brkh-goyang-miring-kiri padding-left-2 brkh-font-3">
+                                                <!--ini emang kosong-->
+                                            </div>
+                                            <div class="brkh-col khusus-2-4 color-table-2 brkh-center padding-center-perfect-1 brkh-font-3 border-pace-col-3">
+                                                <t t-if="o.lokasi_id.kota_lokasi.name == 'JAKARTA'">
+                                                    &#8730;
+                                                </t>
+                                            </div>
+                                            <div class="brkh-col khusus-2-1 color-table-2 brkh-goyang-miring-kiri padding-left-2 brkh-font-3">
+                                                <!--ini emang kosong-->
+                                            </div>
+                                            <!--                                            set ceklis 2-->
+                                            <div class="brkh-col khusus-2-2 color-table-2 brkh-center brkh-goyang-miring-kiri padding-left-top-4 brkh-font-3 border-pace-col-3">
+                                                Timika
+                                            </div>
+                                            <div class="brkh-col khusus-2-3 color-table-2 brkh-goyang-miring-kiri padding-left-2 brkh-font-3">
+                                                <!--ini emang kosong-->
+                                            </div>
+                                            <div class="brkh-col khusus-2-4 color-table-2 brkh-center padding-center-perfect-1 brkh-font-3 border-pace-col-3">
+                                                <t t-if="o.lokasi_id.kota_lokasi.name == 'TIMIKA'">
+                                                    &#8730;
+                                                </t>
+                                            </div>
+                                            <div class="brkh-col khusus-2-1 color-table-2 brkh-goyang-miring-kiri padding-left-2 brkh-font-3">
+                                                <!--ini emang kosong-->
+                                            </div>
+                                        </div>
+                                        <div class="row brkh-row-main brkh-font-3">
+                                            <div class="brkh-col khusus-1 color-table-2 brkh-goyang-miring-kiri padding-left-2 font-bold">
+
+                                                <i>Division/Department </i>
+
+                                            </div>
+                                            <div class="brkh-col khusus-2 color-table-2">
+
+                                                <!--ini emang kosong-->
+                                            </div>
+                                            <div class="brkh-col khusus-1 color-table-2 brkh-goyang-miring-kiri padding-left-4 font-bold">
+
+                                                <i>Location </i>
+
+                                            </div>
+                                            <!--                                            set ceklis 1-->
+                                            <div class="brkh-col khusus-2-1 color-table-2 brkh-goyang-miring-kiri padding-left-1 brkh-font-3">
+                                                <!--ini emang kosong-->
+                                            </div>
+                                            <div class="brkh-col khusus-2-2 color-table-2 brkh-center brkh-goyang-miring-kiri padding-left-top-4 brkh-font-3 border-pace-col-3">
+                                                Balikpapan
+                                            </div>
+                                            <div class="brkh-col khusus-2-3 color-table-2 brkh-goyang-miring-kiri padding-left-2 brkh-font-3">
+                                                <!--ini emang kosong-->
+                                            </div>
+                                            <div class="brkh-col khusus-2-4 color-table-2 brkh-center padding-center-perfect-1 brkh-font-3 border-pace-col-3">
+                                                <t t-if="o.lokasi_id.kota_lokasi.name == 'BALIKPAPAN'">
+                                                    &#8730;
+                                                </t>
+                                            </div>
+                                            <div class="brkh-col khusus-2-1 color-table-2 brkh-goyang-miring-kiri padding-left-2 brkh-font-3">
+                                                <!--ini emang kosong-->
+                                            </div>
+                                            <!--                                            set ceklis 2-->
+                                            <div class="brkh-col khusus-2-2 color-table-2 brkh-center brkh-goyang-miring-kiri padding-left-top-4 brkh-font-3 border-pace-col-3">
+                                                Berau
+                                            </div>
+                                            <div class="brkh-col khusus-2-3 color-table-2 brkh-goyang-miring-kiri padding-left-2 brkh-font-3">
+                                                <!--ini emang kosong-->
+                                            </div>
+                                            <div class="brkh-col khusus-2-4 color-table-2 brkh-center padding-center-perfect-1 brkh-font-3 border-pace-col-3">
+                                                <t t-if="o.lokasi_id.kota_lokasi.name == 'BERAU'">
+                                                    &#8730;
+                                                </t>
+                                            </div>
+                                            <div class="brkh-col khusus-2-1 color-table-2 brkh-goyang-miring-kiri padding-left-2 brkh-font-3">
+                                                <!--ini emang kosong-->
+                                            </div>
+                                        </div>
+                                        <!--                                        row ketiga-->
+                                        <div class="row brkh-row-main brkh-font-3">
+                                            <div class="brkh-col khusus-1 color-table-2 brkh-goyang-miring-kiri padding-left-2 font-bold">
+
+                                                <u>Dibuat oleh</u>
+
+                                            </div>
+                                            <div class="brkh-col khusus-2 color-table-2 brkh-goyang-miring-kiri padding-left-1 border-pace-col-8">
+
+                                                : <span t-field="o.requested_by"/>
+
+                                            </div>
+                                            <div class="brkh-col khusus-1 color-table-2">
+
+                                                <!--ini emang kosong-->
+
+                                            </div>
+                                            <!--                                            set ceklis 1-->
+                                            <div class="brkh-col khusus-2-1 color-table-2 brkh-goyang-miring-kiri padding-left-1 brkh-font-3">
+                                                <!--ini emang kosong-->
+                                            </div>
+                                            <div class="brkh-col khusus-2-2 color-table-2 brkh-center brkh-goyang-miring-kiri padding-left-top-4 brkh-font-3 border-pace-col-3">
+                                                Banjarmasin
+                                            </div>
+                                            <div class="brkh-col khusus-2-3 color-table-2 brkh-goyang-miring-kiri padding-left-2 brkh-font-3">
+                                                <!--ini emang kosong-->
+                                            </div>
+                                            <div class="brkh-col khusus-2-4 color-table-2 brkh-center padding-center-perfect-1 brkh-font-3 border-pace-col-3">
+                                                <t t-if="o.lokasi_id.kota_lokasi.name == 'BANJARMASIN'">
+                                                    &#8730;
+                                                </t>
+                                            </div>
+                                            <div class="brkh-col khusus-2-1 color-table-2 brkh-goyang-miring-kiri padding-left-2 brkh-font-3">
+                                                <!--ini emang kosong-->
+                                            </div>
+                                            <!--                                            set ceklis 2-->
+                                            <div class="brkh-col khusus-2-2 color-table-2 brkh-center brkh-goyang-miring-kiri padding-left-top-4 brkh-font-3 border-pace-col-3">
+                                                Sanga Sanga
+                                            </div>
+                                            <div class="brkh-col khusus-2-3 color-table-2 brkh-goyang-miring-kiri padding-left-2 brkh-font-3">
+                                                <!--ini emang kosong-->
+                                            </div>
+                                            <div class="brkh-col khusus-2-4 color-table-2 brkh-center padding-center-perfect-1 brkh-font-3 border-pace-col-3">
+                                                <t t-if="o.lokasi_id.kota_lokasi.name == 'SANGA-SANGA'">
+                                                    &#8730;
+                                                </t>
+                                            </div>
+                                            <div class="brkh-col khusus-2-1 color-table-2 brkh-goyang-miring-kiri padding-left-2 brkh-font-3">
+                                                <!--ini emang kosong-->
+                                            </div>
+                                        </div>
+                                        <div class="row brkh-row-main brkh-font-3">
+                                            <div class="brkh-col khusus-1 color-table-2 brkh-goyang-miring-kiri padding-left-2 font-bold">
+
+                                                <i>Requested by</i>
+
+                                            </div>
+                                            <div class="brkh-col khusus-2 color-table-2">
+                                                <!--ini emang kosong-->
+
+                                            </div>
+                                            <div class="brkh-col khusus-1 color-table-2">
+
+                                                <!--ini emang kosong-->
+
+                                            </div>
+                                            <!--                                            set ceklis 1-->
+                                            <div class="brkh-col khusus-2-1 color-table-2 brkh-goyang-miring-kiri padding-left-1 brkh-font-3">
+                                                <!--ini emang kosong-->
+                                            </div>
+                                            <div class="brkh-col khusus-2-2 color-table-2 brkh-center brkh-goyang-miring-kiri padding-left-top-4 brkh-font-3 border-pace-col-3">
+                                                Kota Baru
+                                            </div>
+                                            <div class="brkh-col khusus-2-3 color-table-2 brkh-goyang-miring-kiri padding-left-2 brkh-font-3">
+                                                <!--ini emang kosong-->
+                                            </div>
+                                            <div class="brkh-col khusus-2-4 color-table-2 brkh-center padding-center-perfect-1 brkh-font-3 border-pace-col-3">
+                                                <t t-if="o.lokasi_id.kota_lokasi.name == 'KOTA BARU'">
+                                                    &#8730;
+                                                </t>
+                                            </div>
+                                            <div class="brkh-col khusus-2-1 color-table-2 brkh-goyang-miring-kiri padding-left-2 brkh-font-3">
+                                                <!--ini emang kosong-->
+                                            </div>
+                                            <!--                                            set ceklis 2-->
+                                            <div class="brkh-col khusus-2-2 color-table-2 brkh-center brkh-goyang-miring-kiri padding-left-top-4 brkh-font-3 border-pace-col-3">
+                                                Sangata
+                                            </div>
+                                            <div class="brkh-col khusus-2-3 color-table-2 brkh-goyang-miring-kiri padding-left-2 brkh-font-3">
+                                                <!--ini emang kosong-->
+                                            </div>
+                                            <div class="brkh-col khusus-2-4 color-table-2 brkh-center padding-center-perfect-1 brkh-font-3 border-pace-col-3">
+                                                <t t-if="o.lokasi_id.kota_lokasi.name == 'SANGATA'">
+                                                    &#8730;
+                                                </t>
+                                            </div>
+                                            <div class="brkh-col khusus-2-1 color-table-2 brkh-goyang-miring-kiri padding-left-2 brkh-font-3">
+                                                <!--ini emang kosong-->
+                                            </div>
+                                        </div>
+                                        <!--                                        row keempat-->
+                                        <div class="row brkh-row-main brkh-font-3">
+                                            <div class="brkh-col khusus-1 color-table-2 brkh-goyang-miring-kiri padding-left-2 font-bold">
+
+                                                <u>Jabatan</u>
+
+                                            </div>
+                                            <div class="brkh-col khusus-2 color-table-2 brkh-goyang-miring-kiri padding-left-1 border-pace-col-8">
+                                                : <span t-field="o.job_id.name"/>
+
+                                            </div>
+                                            <div class="brkh-col khusus-1 color-table-2">
+
+                                                <!--ini emang kosong-->
+
+                                            </div>
+                                            <!--                                            set ceklis 1-->
+                                            <div class="brkh-col khusus-2-1 color-table-2 brkh-goyang-miring-kiri padding-left-1 brkh-font-3">
+                                                <!--ini emang kosong-->
+                                            </div>
+                                            <div class="brkh-col khusus-2-2 color-table-2 brkh-center brkh-goyang-miring-kiri padding-left-top-4 brkh-font-3 border-pace-col-3">
+                                                Pulau Atas
+                                            </div>
+                                            <div class="brkh-col khusus-2-3 color-table-2 brkh-goyang-miring-kiri padding-left-2 brkh-font-3">
+                                                <!--ini emang kosong-->
+                                            </div>
+                                            <div class="brkh-col khusus-2-4 color-table-2 brkh-center padding-center-perfect-1 brkh-font-3 border-pace-col-3">
+                                                <t t-if="o.lokasi_id.kota_lokasi.name == 'PULAU ATAS'">
+                                                    &#8730;
+                                                </t>
+                                            </div>
+                                            <div class="brkh-col khusus-2-1 color-table-2 brkh-goyang-miring-kiri padding-left-2 brkh-font-3">
+                                                <!--ini emang kosong-->
+                                            </div>
+                                            <!--                                            set ceklis 2-->
+                                            <div class="brkh-col khusus-2-2 color-table-2 brkh-center brkh-goyang-miring-kiri padding-left-top-4 brkh-font-3 border-pace-col-3">
+                                                Bontang
+                                            </div>
+                                            <div class="brkh-col khusus-2-3 color-table-2 brkh-goyang-miring-kiri padding-left-2 brkh-font-3">
+                                                <!--ini emang kosong-->
+                                            </div>
+                                            <div class="brkh-col khusus-2-4 color-table-2 brkh-center padding-center-perfect-1 brkh-font-3 border-pace-col-3">
+                                                <t t-if="o.lokasi_id.kota_lokasi.name == 'BONTANG'">
+                                                    &#8730;
+                                                </t>
+                                            </div>
+                                            <div class="brkh-col khusus-2-1 color-table-2 brkh-goyang-miring-kiri padding-left-2 brkh-font-3">
+                                                <!--ini emang kosong-->
+                                            </div>
+                                        </div>
+                                        <div class="row brkh-row-main brkh-font-3">
+                                            <div class="brkh-col khusus-1 color-table-2 brkh-goyang-miring-kiri padding-left-2 font-bold">
+
+                                                <i>Position</i>
+
+                                            </div>
+                                            <div class="brkh-col khusus-2 color-table-2">
+                                                <!--ini emang kosong-->
+
+                                            </div>
+                                            <div class="brkh-col khusus-1 color-table-2">
+
+                                                <!--ini emang kosong-->
+
+                                            </div>
+                                            <!--                                            set ceklis 1-->
+                                            <div class="brkh-col khusus-2-1 color-table-2 brkh-goyang-miring-kiri padding-left-1 brkh-font-3">
+                                                <!--ini emang kosong-->
+                                            </div>
+                                            <div class="brkh-col khusus-2-2 color-table-2 brkh-center brkh-goyang-miring-kiri padding-left-top-4 brkh-font-3 border-pace-col-3">
+                                                Samarinda
+                                            </div>
+                                            <div class="brkh-col khusus-2-3 color-table-2 brkh-goyang-miring-kiri padding-left-2 brkh-font-3">
+                                                <!--ini emang kosong-->
+                                            </div>
+                                            <div class="brkh-col khusus-2-4 color-table-2 brkh-center padding-center-perfect-1 brkh-font-3 border-pace-col-3">
+                                                <t t-if="o.lokasi_id.kota_lokasi.name == 'SAMARINDA'">
+                                                    &#8730;
+                                                </t>
+                                            </div>
+                                            <div class="brkh-col khusus-2-1 color-table-2 brkh-goyang-miring-kiri padding-left-2 brkh-font-3">
+                                                <!--ini emang kosong-->
+                                            </div>
+                                            <!--                                            set ceklis 2-->
+                                            <div class="brkh-col khusus-2-2 color-table-2 brkh-center brkh-goyang-miring-kiri padding-left-top-4 brkh-font-3 border-pace-col-3">
+                                                Makroman
+                                            </div>
+                                            <div class="brkh-col khusus-2-3 color-table-2 brkh-goyang-miring-kiri padding-left-2 brkh-font-3">
+                                                <!--ini emang kosong-->
+                                            </div>
+                                            <div class="brkh-col khusus-2-4 color-table-2 brkh-center padding-center-perfect-1 brkh-font-3 border-pace-col-3">
+                                                <t t-if="o.lokasi_id.kota_lokasi.name == 'MAKROMAN'">
+                                                    &#8730;
+                                                </t>
+                                            </div>
+                                            <div class="brkh-col khusus-2-1 color-table-2 brkh-goyang-miring-kiri padding-left-2 brkh-font-3">
+                                                <!--ini emang kosong-->
+                                            </div>
+                                        </div>
+                                        <!--                                        row kelima-->
+                                        <div class="row brkh-row-main brkh-font-3">
+                                            <div class="brkh-col khusus-1 color-table-2 brkh-goyang-miring-kiri padding-left-2 font-bold">
+
+                                                <u>Nomor Permintaan</u>
+
+                                            </div>
+                                            <div class="brkh-col khusus-2 color-table-2 brkh-goyang-miring-kiri padding-left-1 border-pace-col-8">
+                                                : <span t-field="o.origin"/>
+                                            </div>
+                                            <div class="brkh-col khusus-1 color-table-2">
+
+                                                <!--ini emang kosong-->
+
+                                            </div>
+                                            <!--                                            set ceklis 1-->
+                                            <div class="brkh-col khusus-2-1 color-table-2 brkh-goyang-miring-kiri padding-left-1 brkh-font-3">
+                                                <!--ini emang kosong-->
+                                            </div>
+                                            <div class="brkh-col khusus-2-2 color-table-2 brkh-center brkh-goyang-miring-kiri padding-left-top-4 brkh-font-3 border-pace-col-3">
+                                                Tenggarong
+                                            </div>
+                                            <div class="brkh-col khusus-2-3 color-table-2 brkh-goyang-miring-kiri padding-left-2 brkh-font-3">
+                                                <!--ini emang kosong-->
+                                            </div>
+                                            <div class="brkh-col khusus-2-4 color-table-2 brkh-center padding-center-perfect-1 brkh-font-3 border-pace-col-3">
+                                                <t t-if="o.lokasi_id.kota_lokasi.name == 'TENGGARONG'">
+                                                    &#8730;
+                                                </t>
+                                            </div>
+                                            <div class="brkh-col khusus-2-1 color-table-2 brkh-goyang-miring-kiri padding-left-2 brkh-font-3">
+                                                <!--ini emang kosong-->
+                                            </div>
+                                            <!--                                            set ceklis 2-->
+                                            <div class="brkh-col khusus-2-2 color-table-2 brkh-center brkh-goyang-miring-kiri padding-left-top-4 brkh-font-3 border-pace-col-3">
+                                                Penajam
+                                            </div>
+                                            <div class="brkh-col khusus-2-3 color-table-2 brkh-goyang-miring-kiri padding-left-2 brkh-font-3">
+                                                <!--ini emang kosong-->
+                                            </div>
+                                            <div class="brkh-col khusus-2-4 color-table-2 brkh-center padding-center-perfect-1 brkh-font-3 border-pace-col-3">
+                                                <t t-if="o.lokasi_id.kota_lokasi.name == 'PENAJAM'">
+                                                    &#8730;
+                                                </t>
+                                            </div>
+                                            <div class="brkh-col khusus-2-1 color-table-2 brkh-goyang-miring-kiri padding-left-2 brkh-font-3">
+                                                <!--ini emang kosong-->
+                                            </div>
+                                        </div>
+                                        <div class="row brkh-row-main brkh-font-3">
+                                            <div class="brkh-col khusus-1 color-table-2 brkh-goyang-miring-kiri padding-left-2 font-bold">
+
+                                                <i>Request Number</i>
+
+                                            </div>
+                                            <div class="brkh-col khusus-2 color-table-2">
+                                                <!--ini emang kosong-->
+
+                                            </div>
+                                            <div class="brkh-col khusus-1 color-table-2">
+
+                                                <!--ini emang kosong-->
+
+                                            </div>
+                                            <div class="brkh-col khusus-2 color-table-2 brkh-goyang-miring-kiri padding-left-4 brkh-font-6">
+                                                <i>Mohon beri tanda ( &#8730; ) sesuai wilayah supply</i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col brkh-col khusus-12 border-pace-top">
+                                        <div class="row brkh-row-main">
+                                            <div class="brkh-col khusus-4 color-table-2">
+                                                <br/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col brkh-col khusus-11 border-pace-left">
+                                        <div class="row brkh-row-main brkh-font-3">
+                                            <div class="brkh-col khusus-3 color-table-2 brkh-goyang-miring-kiri border-pace-col-1 padding-left-4 font-bold">
+                                                <br/>
+                                                Pemohon / <i>Requested by</i>
+                                            </div>
+                                        </div>
+                                        <div class="row brkh-row-main brkh-font-3">
+                                            <div class="brkh-col khusus-3 color-table-2 brkh-goyang-miring-kiri padding-left-4">
+                                                <!--                                                ini tanda tangan requested by-->
+                                                <br/><br/>
+                                                <img t-attf-src="data:image/*;base64,{{o.sign_request}}"
+                                                     t-att-alt="o.sign_request" style="width: 200px;"/>
+                                                <br/><br/>
+                                            </div>
+                                        </div>
+                                        <div class="row brkh-row-main brkh-font-3">
+                                            <div class="brkh-col khusus-3 color-table-2 brkh-goyang-miring-kiri padding-left-4">
+                                                <u>(Tanda tangan / <i>Signature</i>)</u>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--                                row panjang -->
+                                <div class="row brkh-row-main">
+                                    <div class="brkh-col khusus-9 color-table-2 border-pace-col-4 brkh-font-3">
+                                        <br/>
+                                    </div>
+                                </div>
+                                <t t-if="o.line_ids">
+                                    <!--                                            ini adalah thead-->
+                                    <div class="row brkh-row-main brkh-font-3 font-bold">
+                                        <div class="brkh-col thead-1 color-table-1 brkh-center border-pace-col-4 padding-center-2">
+
+                                            <u>No.</u>
+
+                                        </div>
+                                        <div class="brkh-col thead-2 color-table-1 brkh-center border-pace-col-3 padding-center-2">
+
+                                            <u>NO PO</u>
+
+                                        </div>
+                                        <div class="brkh-col thead-3 color-table-1 brkh-center border-pace-col-4 padding-center-2">
+
+                                            <u>Kode</u>
+
+                                        </div>
+                                        <div class="brkh-col thead-4 color-table-1 brkh-center border-pace-col-3 padding-center-2">
+
+                                            <u>Nama Barang</u>
+
+                                        </div>
+                                        <div class="brkh-col thead-5 color-table-1 brkh-center border-pace-col-4 padding-center-2">
+
+                                            <u>Tipe</u>
+
+                                        </div>
+                                        <div class="brkh-col thead-5 color-table-1 brkh-center border-pace-col-3 padding-center-2">
+
+                                            <u>Nomor Parts</u>
+
+                                        </div>
+                                        <div class="brkh-col thead-3 color-table-1 brkh-center border-pace-col-4 padding-center-2">
+
+                                            <u>Jumlah</u>
+
+                                        </div>
+                                        <div class="brkh-col thead-3 color-table-1 brkh-center border-pace-col-3 padding-center-2">
+
+                                            <u>Satuan</u>
+
+                                        </div>
+                                        <div class="brkh-col thead-6 color-table-1 brkh-center border-pace-col-3 padding-center-2">
+
+                                            <u>Remark</u>
+
+                                        </div>
+                                    </div>
+                                    <!--                                            ini adalah thead 2-->
+                                    <div class="row brkh-row-main brkh-font-3 font-bold">
+                                        <div class="brkh-col thead-1 color-table-1 brkh-center border-pace-col-4 padding-center-3">
+
+                                            <i>No.</i>
+
+                                        </div>
+                                        <div class="brkh-col thead-2 color-table-1 brkh-center border-pace-col-3 padding-center-3">
+
+                                            <i>PO Number</i>
+
+                                        </div>
+                                        <div class="brkh-col thead-3 color-table-1 brkh-center border-pace-col-4 padding-center-3">
+
+                                            Budget
+
+                                        </div>
+                                        <div class="brkh-col thead-4 color-table-1 brkh-center border-pace-col-3 padding-center-3">
+
+                                            <i>Name of Good/Pairs</i>
+
+                                        </div>
+                                        <div class="brkh-col thead-5 color-table-1 brkh-center border-pace-col-4 padding-center-3">
+
+                                            <i>Type</i>
+
+                                        </div>
+                                        <div class="brkh-col thead-5 color-table-1 brkh-center border-pace-col-3 padding-center-3">
+
+                                            <i>Part Number</i>
+
+                                        </div>
+                                        <div class="brkh-col thead-3 color-table-1 brkh-center border-pace-col-4 padding-center-3">
+
+                                            <i>Quantity</i>
+
+                                        </div>
+                                        <div class="brkh-col thead-3 color-table-1 brkh-center border-pace-col-3 padding-center-3">
+
+                                            <i>Unit</i>
+
+                                        </div>
+                                        <div class="brkh-col thead-6 color-table-1 brkh-center border-pace-col-3 padding-center-3">
+
+                                            <i>Keterangan</i>
+
+                                        </div>
+                                    </div>
+                                    <!--                                            ini adalah tbody-->
+                                    <t t-set="i" t-value="1"/>
+                                    <t t-foreach="o.line_ids" t-as="line">
+                                        <div class="row brkh-row-main brkh-font-3">
+                                            <div class="brkh-col tbody-1 color-table-2 brkh-center border-pace-col-4 padding-center-4">
+                                                <td><span t-esc="i"/></td>
+                                            </div>
+                                            <t t-set="i" t-value="i+1"/>
+                                            <div class="brkh-col tbody-2 color-table-2 brkh-center border-pace-col-3 padding-center-4">
+
+                                                <!--                                                <span t-field="line.group_id"/>-->
+                                            </div>
+                                            <div class="brkh-col tbody-3 color-table-2 brkh-center border-pace-col-4 padding-center-4">
+
+                                                <span t-field="line.code_budget_id.name"/>
+                                            </div>
+                                            <div class="brkh-col tbody-4 color-table-2 brkh-goyang-miring-kiri border-pace-col-3 padding-center-4">
+
+                                                <span t-field="line.name"/>
+                                            </div>
+                                            <div class="brkh-col tbody-5 color-table-2 brkh-center border-pace-col-4 padding-center-4">
+                                                <t t-if="line.merk_barang is False">
+                                                    <![CDATA[
+                                                                &nbsp;
+                                                    ]]>
+                                                </t>
+                                                <t t-if="line.merk_barang is not False">
+                                                    <span t-field="line.merk_barang"/>
+                                                </t>
+                                                <!--                                                batas-->
+                                                <t t-if="line.model_barang is False">
+                                                    <![CDATA[
+                                                                &nbsp;
+                                                    ]]>
+                                                </t>
+                                                <t t-if="line.model_barang is not False">
+                                                    <span t-field="line.model_barang"/>
+                                                </t>
+
+                                            </div>
+                                            <div class="brkh-col tbody-5 color-table-2 brkh-center border-pace-col-3 padding-center-4">
+                                                <t t-if="line.nomor_seri is False">
+                                                    <![CDATA[
+                                                                &nbsp;
+                                                    ]]>
+                                                </t>
+                                                <t t-if="line.nomor_seri is not False">
+                                                    <span t-field="line.nomor_seri"/>
+                                                </t>
+                                            </div>
+                                            <div class="brkh-col tbody-3 color-table-2 brkh-center border-pace-col-4 padding-center-4">
+                                                <span t-field="line.product_qty"/>
+
+                                            </div>
+                                            <div class="brkh-col tbody-3 color-table-2 brkh-center border-pace-col-3 padding-center-4">
+
+                                                <span t-field="line.product_uom_id.name"/>
+                                            </div>
+                                            <div class="brkh-col tbody-6 color-table-2 brkh-center border-pace-col-3 padding-center-4">
+                                                <t t-if="line.project_id.name is False">
+                                                    <![CDATA[
+                                                                &nbsp;
+                                                    ]]>
+                                                </t>
+                                                <t t-if="line.project_id.name is not False">
+                                                    [<span t-field="line.project_id.name"/>]
+                                                </t>
+                                                <span t-field="line.remarks"/>
+                                            </div>
+                                        </div>
+                                    </t>
+                                    <!--                                            ini adalah tbody kosong-->
+                                    <div class="row brkh-row-main brkh-font-3 font-bold">
+                                        <div class="brkh-col tbody-1 color-table-2 brkh-center border-pace-col-4 padding-center-4">
+
+                                            <!--ini emang kosong--><br/>
+                                        </div>
+                                        <div class="brkh-col tbody-2 color-table-2 brkh-center border-pace-col-3 padding-center-4">
+
+                                            <!--ini emang kosong--><br/>
+                                        </div>
+                                        <div class="brkh-col tbody-3 color-table-2 brkh-center border-pace-col-4 padding-center-4">
+
+                                            <!--ini emang kosong--><br/>
+                                        </div>
+                                        <div class="brkh-col tbody-4 color-table-2 brkh-center border-pace-col-3 padding-center-4">
+
+                                            <!--ini emang kosong--><br/>
+                                        </div>
+                                        <div class="brkh-col tbody-5 color-table-2 brkh-center border-pace-col-4 padding-center-4">
+
+                                            <!--ini emang kosong--><br/>
+                                        </div>
+                                        <div class="brkh-col tbody-5 color-table-2 brkh-center border-pace-col-3 padding-center-4">
+
+                                            <!--ini emang kosong--><br/>
+                                        </div>
+                                        <div class="brkh-col tbody-3 color-table-2 brkh-center border-pace-col-4 padding-center-4">
+                                            <!--ini emang kosong--><br/>
+
+                                        </div>
+                                        <div class="brkh-col tbody-3 color-table-2 brkh-center border-pace-col-3 padding-center-4">
+
+                                            <!--ini emang kosong--><br/>
+                                        </div>
+                                        <div class="brkh-col tbody-6 color-table-2 brkh-center border-pace-col-3 padding-center-4">
+                                            <!--ini emang kosong--><br/>
+                                        </div>
+                                    </div>
+                                    <!--                                            ini adalah tbody kosong-->
+                                    <div class="row brkh-row-main brkh-font-3 font-bold">
+                                        <div class="brkh-col tbody-1 color-table-2 brkh-center border-pace-col-4 padding-center-4">
+
+                                            <!--ini emang kosong--><br/>
+                                        </div>
+                                        <div class="brkh-col tbody-2 color-table-2 brkh-center border-pace-col-3 padding-center-4">
+
+                                            <!--ini emang kosong--><br/>
+                                        </div>
+                                        <div class="brkh-col tbody-3 color-table-2 brkh-center border-pace-col-4 padding-center-4">
+
+                                            <!--ini emang kosong--><br/>
+                                        </div>
+                                        <div class="brkh-col tbody-4 color-table-2 brkh-center border-pace-col-3 padding-center-4">
+
+                                            <!--ini emang kosong--><br/>
+                                        </div>
+                                        <div class="brkh-col tbody-5 color-table-2 brkh-center border-pace-col-4 padding-center-4">
+
+                                            <!--ini emang kosong--><br/>
+                                        </div>
+                                        <div class="brkh-col tbody-5 color-table-2 brkh-center border-pace-col-3 padding-center-4">
+
+                                            <!--ini emang kosong--><br/>
+                                        </div>
+                                        <div class="brkh-col tbody-3 color-table-2 brkh-center border-pace-col-4 padding-center-4">
+                                            <!--ini emang kosong--><br/>
+
+                                        </div>
+                                        <div class="brkh-col tbody-3 color-table-2 brkh-center border-pace-col-3 padding-center-4">
+
+                                            <!--ini emang kosong--><br/>
+                                        </div>
+                                        <div class="brkh-col tbody-6 color-table-2 brkh-center border-pace-col-3 padding-center-4">
+                                            <!--ini emang kosong--><br/>
+                                        </div>
+                                    </div>
+                                    <!--                                            ini adalah tbody kosong-->
+                                    <div class="row brkh-row-main brkh-font-3 font-bold">
+                                        <div class="brkh-col tbody-1 color-table-2 brkh-center border-pace-col-4 padding-center-4">
+
+                                            <!--ini emang kosong--><br/>
+                                        </div>
+                                        <div class="brkh-col tbody-2 color-table-2 brkh-center border-pace-col-3 padding-center-4">
+
+                                            <!--ini emang kosong--><br/>
+                                        </div>
+                                        <div class="brkh-col tbody-3 color-table-2 brkh-center border-pace-col-4 padding-center-4">
+
+                                            <!--ini emang kosong--><br/>
+                                        </div>
+                                        <div class="brkh-col tbody-4 color-table-2 brkh-center border-pace-col-3 padding-center-4">
+
+                                            <!--ini emang kosong--><br/>
+                                        </div>
+                                        <div class="brkh-col tbody-5 color-table-2 brkh-center border-pace-col-4 padding-center-4">
+
+                                            <!--ini emang kosong--><br/>
+                                        </div>
+                                        <div class="brkh-col tbody-5 color-table-2 brkh-center border-pace-col-3 padding-center-4">
+
+                                            <!--ini emang kosong--><br/>
+                                        </div>
+                                        <div class="brkh-col tbody-3 color-table-2 brkh-center border-pace-col-4 padding-center-4">
+                                            <!--ini emang kosong--><br/>
+
+                                        </div>
+                                        <div class="brkh-col tbody-3 color-table-2 brkh-center border-pace-col-3 padding-center-4">
+
+                                            <!--ini emang kosong--><br/>
+                                        </div>
+                                        <div class="brkh-col tbody-6 color-table-2 brkh-center border-pace-col-3 padding-center-4">
+                                            <!--ini emang kosong--><br/>
+                                        </div>
+                                    </div>
+                                </t>
+                                <div class="row brkh-row-main">
+                                    <div class="brkh-col khusus-9 color-table-2 border-pace-top brkh-font-3">
+                                        <br/>
+                                    </div>
+                                </div>
+                                <div class="row brkh-row-main brkh-font-3">
+                                    <div class="brkh-col khusus-8 color-table-2 border-pace-col-6 brkh-goyang-miring-kiri padding-left-4 font-bold">
+                                        Diisi oleh PIC Divisi/Department
+                                    </div>
+                                    <div class="brkh-col khusus-8 color-table-2 border-pace-col-6 brkh-goyang-miring-kiri padding-left-4 font-bold">
+                                        Diisi oleh HRGA
+                                    </div>
+                                    <div class="brkh-col khusus-8 color-table-2 border-pace-col-4 brkh-goyang-miring-kiri padding-left-4 font-bold">
+                                        Diisi oleh Corporate Logistic
+                                    </div>
+                                </div>
+                                <div class="row brkh-row-main brkh-font-3">
+                                    <div class="brkh-col khusus-8 color-table-2 border-pace-right brkh-goyang-miring-kiri padding-left-top-3">
+                                        <u>Disetujui</u><br/><i>Approved by</i>
+                                    </div>
+                                    <div class="brkh-col khusus-8 color-table-2 border-pace-right brkh-goyang-miring-kiri padding-left-top-3">
+                                        <u>Diketahui</u><br/><i>Acknowledge by</i>
+                                    </div>
+                                    <div class="brkh-col khusus-8 color-table-2 border-pace-right brkh-goyang-miring-kiri padding-left-top-3">
+                                        <u>Disetujui</u><br/><i>Approved by</i>
+                                    </div>
+                                </div>
+                                <div class="row brkh-row-main">
+                                    <div class="brkh-col khusus-8 color-table-2 border-pace-right brkh-goyang-miring-kiri padding-left-top-3">
+                                        <br/>
+                                        <img t-attf-src="data:image/*;base64,{{o.sign_approver}}"
+                                             t-att-alt="o.sign_approver" style="width: 200px;"/>
+                                        <br/>
+                                    </div>
+                                    <div class="brkh-col khusus-8 color-table-2 border-pace-right brkh-goyang-miring-kiri padding-left-top-3">
+                                        <br/>
+                                        <img t-attf-src="data:image/*;base64,{{o.sign_first_approve}}"
+                                             t-att-alt="o.sign_first_approve" style="width: 200px;"/>
+                                        <br/>
+                                    </div>
+                                    <div class="brkh-col khusus-8 color-table-2 border-pace-right brkh-goyang-miring-kiri padding-left-top-3">
+                                        <br/>
+                                        <img t-attf-src="data:image/*;base64,{{o.sign_final_approve}}"
+                                             t-att-alt="o.sign_final_approve" style="width: 200px;"/>
+                                        <br/>
+                                    </div>
+                                </div>
+                                <div class="row brkh-row-main brkh-font-3">
+                                    <div class="brkh-col khusus-8 color-table-2 border-pace-col-10 brkh-goyang-miring-kiri padding-left-top-3">
+                                        <u>Tanda tangan/</u><i>Signature</i><br/><i>Division/Department Head</i>
+                                    </div>
+                                    <div class="brkh-col khusus-8 color-table-2 border-pace-col-10 brkh-goyang-miring-kiri padding-left-top-3">
+                                        <u>Tanda tangan/</u><i>Signature</i><br/><i>HRGA</i>
+                                    </div>
+                                    <div class="brkh-col khusus-8 color-table-2 border-pace-col-10 brkh-goyang-miring-kiri padding-left-top-3">
+                                        <u>Tanda tangan/</u><i>Signature</i><br/><i>Corporate Logistic</i>
+                                    </div>
+                                </div>
+                                <div class="row brkh-row-main">
+                                    <div class="brkh-col khusus-9 color-table-2 border-pace-top brkh-font-6 border-pace-col-0 padding-center-1 brkh-goyang-miring-kiri">
+                                        <i>@Copyright PT.Barokah Perkasa Group</i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="footer">
+                        <div class="row brkh-row-main brkh-font-3">
+                            <div class="brkh-col khusus-9 color-table-2">
+                                <br/>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+                <t t-if="o.form_type == 'kapal'">
+                    <header>
+                        <div class="row brkh-row-main">
+                            <div class="brkh-col brkh-col color-table-2 brkh-font-5 border-pace-col-0 padding-right-3 brkh-goyang-miring-kanan">
+                                CORLOG-FR-01-01-ROO
+                            </div>
+                        </div>
+                    </header>
+                    <div class="container-fluid border-main-pace">
+                        <div class="row brkh-row-main">
+                            <div class="col brkh-col brkh-center">
+                                <div class="brkh-judul brkh-judul-center font-bold">
+                                    <u>FORM PERMINTAAN BARANG</u>
+                                    <br/>
+                                    <i>PURCHASE ORDER REQUESTION FORM</i>
+                                </div>
+                                <br></br>
+                                <div class="row brkh-row-main no-gutter">
+                                    <div class="col brkh-col khusus-kpl-10 border-pace-top">
+                                        <!--                                        row pertama-->
+                                        <div class="row brkh-row-main brkh-font-3">
+                                            <div class="brkh-col khusus-kpl-4 color-table-2 brkh-goyang-miring-kiri padding-left-top-1 font-bold">
+
+                                                <u>Kapal</u>
+
+                                            </div>
+                                            <div class="brkh-col khusus-kpl-5 color-table-2 brkh-goyang-miring-kiri padding-left-top-2 border-pace-col-8">
+                                                : <span t-field="o.vessel_id.name"/>
+                                                <t t-if="o.vessel_id.imo_no is False">
+                                                    <![CDATA[
+                                                                &nbsp;
+                                                    ]]>
+                                                </t>
+                                                <t t-if="o.vessel_id.imo_no is not False">
+                                                    (IMO:<span t-field="o.vessel_id.imo_no"/>)
+                                                </t>
+
+
+                                            </div>
+                                            <div class="brkh-col khusus-kpl-1 color-table-2 brkh-goyang-miring-kiri padding-left-top-1 font-bold">
+
+                                                <u>Tanggal</u>
+
+                                            </div>
+                                            <div class="brkh-col khusus-kpl-2 color-table-2 brkh-goyang-miring-kiri padding-left-top-2 border-pace-bottom">
+                                                : <span t-field="o.date_start"/>
+
+                                            </div>
+                                        </div>
+                                        <div class="row brkh-row-main brkh-font-3">
+                                            <div class="brkh-col khusus-kpl-4 color-table-2 brkh-goyang-miring-kiri padding-left-2 font-bold">
+
+                                                <i>Vessel</i>
+
+                                            </div>
+                                            <div class="brkh-col khusus-kpl-5 color-table-2">
+
+                                                <!--ini emang kosong-->
+                                            </div>
+                                            <div class="brkh-col khusus-kpl-1 color-table-2 brkh-goyang-miring-kiri padding-left-2 font-bold">
+
+                                                <i>Date</i>
+
+                                            </div>
+                                            <div class="brkh-col khusus-kpl-2 color-table-2">
+                                                <!--ini emang kosong-->
+
+                                            </div>
+                                        </div>
+                                        <!--                                        row kedua-->
+                                        <div class="row brkh-row-main brkh-font-3">
+                                            <div class="brkh-col khusus-kpl-4 color-table-2 brkh-goyang-miring-kiri padding-left-2 font-bold">
+
+                                                <u>Dibuat oleh</u>
+
+                                            </div>
+                                            <div class="brkh-col khusus-kpl-5 color-table-2 brkh-goyang-miring-kiri padding-left-1 border-pace-col-8">
+
+                                                : <span t-field="o.requested_by"/>
+                                            </div>
+                                            <div class="brkh-col khusus-kpl-1 color-table-2 brkh-goyang-miring-kiri padding-left-2 font-bold">
+
+                                                <u>No.Permintaan</u>
+
+                                            </div>
+                                            <div class="brkh-col khusus-kpl-2 color-table-2 brkh-goyang-miring-kiri padding-left-1 border-pace-bottom">
+                                                : <span t-field="o.origin"/>
+
+                                            </div>
+                                        </div>
+                                        <div class="row brkh-row-main brkh-font-3">
+                                            <div class="brkh-col khusus-kpl-4 color-table-2 brkh-goyang-miring-kiri padding-left-2 font-bold">
+
+                                                <i>Requested by</i>
+
+                                            </div>
+                                            <div class="brkh-col khusus-kpl-5 color-table-2">
+
+                                                <!--ini emang kosong-->
+                                            </div>
+                                            <div class="brkh-col khusus-kpl-1 color-table-2 brkh-goyang-miring-kiri padding-left-2 font-bold">
+
+                                                <i>Request Number</i>
+
+                                            </div>
+                                            <div class="brkh-col khusus-kpl-2 color-table-2">
+                                                <!--ini emang kosong-->
+
+                                            </div>
+                                        </div>
+                                        <!--                                        row ketiga-->
+                                        <div class="row brkh-row-main brkh-font-3">
+                                            <div class="brkh-col khusus-kpl-4 color-table-2 brkh-goyang-miring-kiri padding-left-2 font-bold">
+
+                                                <u>No.PO&#42;</u>
+
+                                            </div>
+                                            <div class="brkh-col khusus-kpl-5 color-table-2 brkh-goyang-miring-kiri padding-left-1 border-pace-col-8">
+
+                                                : <span t-field="o.group_id"/>
+
+                                            </div>
+                                            <div class="brkh-col khusus-kpl-1 color-table-2 brkh-goyang-miring-kiri padding-left-2 font-bold">
+
+                                                <u>Department</u>
+
+                                            </div>
+
+                                            <div class="brkh-col khusus-kpl-2-3 color-table-2 brkh-goyang-miring-kiri padding-left-1 brkh-font-3">
+                                                :
+
+                                            </div>
+                                            <div class="brkh-col khusus-kpl-2-1 color-table-2 brkh-center padding-center-perfect-1 font-bold brkh-font-3 border-pace-col-3">
+                                                <t t-if="o.divisi_id.name == 'DECK'">
+                                                    &#8730;
+                                                </t>
+                                            </div>
+                                            <div class="brkh-col khusus-kpl-2-2 color-table-2 brkh-goyang-miring-kiri padding-left-2 brkh-font-3">
+                                                Deck
+
+                                            </div>
+
+                                        </div>
+                                        <div class="row brkh-row-main">
+                                            <div class="brkh-col khusus-kpl-4 color-table-2 brkh-goyang-miring-kiri padding-left-2 font-bold brkh-font-3">
+
+                                                <i>PO Number</i>
+
+                                            </div>
+                                            <div class="brkh-col khusus-kpl-5 color-table-2">
+                                                <!--ini emang kosong-->
+
+                                            </div>
+                                            <div class="brkh-col khusus-kpl-1 color-table-2 brkh-goyang-miring-kiri padding-left-2 font-bold brkh-font-6">
+
+                                                <i>Beri tanda / Put &#8730;</i>
+
+                                            </div>
+                                            <div class="brkh-col khusus-kpl-2-3 color-table-2 brkh-goyang-miring-kiri padding-left-1 brkh-font-3">
+                                                <!--                                                 ini emang kosong-->
+                                            </div>
+                                            <div class="brkh-col khusus-kpl-2-1 color-table-2 brkh-center padding-center-perfect-1 font-bold brkh-font-3 border-pace-col-3">
+                                                <t t-if="o.divisi_id.name == 'ENGINE'">
+                                                    &#8730;
+                                                </t>
+                                            </div>
+                                            <div class="brkh-col khusus-kpl-2-2 color-table-2 brkh-goyang-miring-kiri padding-left-2 brkh-font-3">
+                                                Mesin / Engine
+
+                                            </div>
+                                        </div>
+                                        <div class="row brkh-row-main">
+                                            <div class="brkh-col khusus-kpl-4 color-table-2 brkh-font-6 brkh-goyang-miring-kiri padding-left-2 font-bold">
+
+                                                &#42;<i>diisi oleh Corp. Logistic</i>
+
+                                            </div>
+                                            <div class="brkh-col khusus-kpl-5 color-table-2">
+                                                <!--ini emang kosong-->
+
+                                            </div>
+                                            <div class="brkh-col khusus-kpl-1 color-table-2 brkh-goyang-miring-kiri padding-left-2 font-bold">
+
+                                                <!--ini emang kosong-->
+
+                                            </div>
+                                            <div class="brkh-col khusus-kpl-2 color-table-2">
+                                                <!--ini emang kosong-->
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col brkh-col khusus-kpl-13 border-pace-col-9">
+                                        <div class="row brkh-row-main brkh-font-3">
+                                            <div class="brkh-col khusus-kpl-3 color-table-2 brkh-goyang-miring-kiri padding-left-4 font-bold">
+                                                <br/>
+                                                <u>Pemohon / <i>Requested by</i></u>
+                                            </div>
+                                        </div>
+                                        <div class="row brkh-row-main brkh-font-3">
+                                            <div class="brkh-col khusus-kpl-3 color-table-2 brkh-goyang-miring-kiri padding-left-4">
+                                                <!--                                                ini tanda tangan requested by-->
+                                                <br/><br/>
+                                                <img t-attf-src="data:image/*;base64,{{o.sign_request}}"
+                                                     t-att-alt="o.sign_request" style="width: 200px;"/>
+                                                <br/>
+                                            </div>
+                                        </div>
+                                        <div class="row brkh-row-main brkh-font-3">
+                                            <div class="brkh-col khusus-kpl-3 color-table-2 brkh-goyang-miring-kiri padding-left-4">
+                                                <u>(Tanda tangan / <i>Signature</i>)</u><br/><i>Jabatan/Position: <span
+                                                    t-field="o.job_id.name"/></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col brkh-col khusus-kpl-11 border-pace-left">
+                                        <div class="row brkh-row-main brkh-font-3">
+                                            <div class="brkh-col khusus-kpl-3 color-table-2 brkh-goyang-miring-kiri border-pace-col-1 padding-left-4 font-bold">
+                                                <br/>
+                                                <u>Diketahui Nahkoda / <i>Acknowledge by Master</i></u>
+                                            </div>
+                                        </div>
+                                        <div class="row brkh-row-main brkh-font-3">
+                                            <div class="brkh-col khusus-kpl-3 color-table-2 brkh-goyang-miring-kiri padding-left-4">
+                                                <!--                                                ini tanda tangan requested by-->
+                                                <br/><br/>
+                                                <img t-attf-src="data:image/*;base64,{{o.sign_approver}}"
+                                                     t-att-alt="o.sign_approver" style="width: 200px;"/>
+                                                <br/>
+                                            </div>
+                                        </div>
+                                        <div class="row brkh-row-main brkh-font-3">
+                                            <div class="brkh-col khusus-kpl-3 color-table-2 brkh-goyang-miring-kiri padding-left-4">
+                                                <u>(Tanda tangan / <i>Signature</i>)</u><br/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--                                row panjang -->
+                                <div class="row brkh-row-main">
+                                    <div class="brkh-col khusus-kpl-9 color-table-2 border-pace-col-4 brkh-font-3">
+                                        <br/>
+                                    </div>
+                                </div>
+                                <t t-if="o.line_ids">
+                                    <!--                                            ini adalah thead-->
+                                    <div class="row brkh-row-main brkh-font-3 font-bold">
+                                        <div class="brkh-col thead-kpl-1 color-table-1 brkh-center border-pace-col-4 padding-center-2-kpl">
+
+                                            <u>No.</u>
+
+                                        </div>
+                                        <div class="brkh-col thead-kpl-2 color-table-1 brkh-center border-pace-col-3 padding-center-2-kpl">
+
+                                            <u>Kategori&#42;</u>
+
+                                        </div>
+                                        <div class="brkh-col thead-kpl-3 color-table-1 brkh-center border-pace-col-4 padding-center-2-kpl">
+
+                                            <u>Kode&#42;</u>
+
+                                        </div>
+                                        <div class="brkh-col thead-kpl-4 color-table-1 brkh-center border-pace-col-3 padding-center-2-kpl">
+
+                                            <u>Deskripsi Barang (Merek, Ukuran atau Dimensi)</u>
+
+                                        </div>
+                                        <div class="brkh-col thead-kpl-5 color-table-1 brkh-center border-pace-col-4 padding-center-2-kpl">
+
+                                            <u>Tipe / Model</u>
+
+                                        </div>
+                                        <div class="brkh-col thead-kpl-6 color-table-1 brkh-center border-pace-col-3 padding-center-2-kpl">
+
+                                            <u>Nomor Parts</u>
+
+                                        </div>
+                                        <div class="brkh-col thead-kpl-7 color-table-1 brkh-center border-pace-col-3 padding-center-2-kpl">
+
+                                            <u>Permintaan</u><br/><i>Request</i>
+
+                                        </div>
+                                        <div class="brkh-col thead-kpl-8 color-table-1 brkh-center border-pace-col-3 padding-center-2-kpl">
+
+                                            <u>Terakhir Diberikan</u><br/><i>Last Delivered</i>
+
+                                        </div>
+                                        <div class="brkh-col thead-kpl-9 color-table-1 brkh-center border-pace-col-3 padding-center-2-kpl">
+
+                                            <u>Sisa di Kapal</u>
+
+                                        </div>
+                                        <div class="brkh-col thead-kpl-9 color-table-1 brkh-center border-pace-col-3 padding-center-2-kpl">
+
+                                            <u>Keterangan</u>
+
+                                        </div>
+                                    </div>
+                                    <!--                                            ini adalah thead 2-->
+                                    <div class="row brkh-row-main brkh-font-3 font-bold">
+                                        <div class="brkh-col thead-kpl-1 color-table-1 brkh-center border-pace-col-4 padding-center-3-kpl">
+
+                                            <i>No.</i>
+
+                                        </div>
+                                        <div class="brkh-col thead-kpl-2 color-table-1 brkh-center border-pace-col-3 padding-center-3-kpl">
+
+                                            <i>L/M/H</i>
+
+                                        </div>
+                                        <div class="brkh-col thead-kpl-3 color-table-1 brkh-center border-pace-col-4 padding-center-3-kpl">
+
+                                            <i>Budget</i>
+
+                                        </div>
+                                        <div class="brkh-col thead-kpl-4 color-table-1 brkh-center border-pace-col-3 padding-center-3-kpl">
+
+                                            <i>Name of Good Description (Brand, Size or Dimension)</i>
+
+                                        </div>
+                                        <div class="brkh-col thead-kpl-5 color-table-1 brkh-center border-pace-col-4 padding-center-3-kpl">
+
+                                            <i>Type/Model</i>
+
+                                        </div>
+                                        <div class="brkh-col thead-kpl-6 color-table-1 brkh-center border-pace-col-3 padding-center-3-kpl">
+
+                                            <i>Part Number</i>
+
+                                        </div>
+                                        <div class="brkh-col thead-kpl-7-1 color-table-1 brkh-center border-pace-col-3 padding-center-3-kpl">
+
+                                            <i>Qty</i>
+
+                                        </div>
+                                        <div class="brkh-col thead-kpl-7-2 color-table-1 brkh-center border-pace-col-3 padding-center-3-kpl">
+
+                                            <i>Unit</i>
+
+                                        </div>
+                                        <div class="brkh-col thead-kpl-8-1 color-table-1 brkh-center border-pace-col-3 padding-center-3-kpl">
+
+                                            Tanggal/<i>Date</i>
+
+                                        </div>
+                                        <div class="brkh-col thead-kpl-8-2 color-table-1 brkh-center border-pace-col-3 padding-center-3-kpl">
+
+                                            Jumlah/<i>Qty</i>
+
+                                        </div>
+                                        <div class="brkh-col thead-kpl-9 color-table-1 brkh-center border-pace-col-3 padding-center-3-kpl">
+
+                                            <i>Remaining On Boards</i>
+
+                                        </div>
+                                        <div class="brkh-col thead-kpl-9 color-table-1 brkh-center border-pace-col-3 padding-center-3-kpl">
+
+                                            <i>Remark</i>
+
+                                        </div>
+                                    </div>
+                                    <!--                                            ini adalah tbody-->
+                                    <t t-set="i" t-value="1"/>
+                                    <t t-foreach="o.line_ids" t-as="line">
+                                        <div class="row brkh-row-main brkh-font-3">
+                                            <div class="brkh-col thead-kpl-1 color-table-2 brkh-center border-pace-col-4 padding-center-4-kpl">
+                                                <td><span t-esc="i"/></td>
+                                            </div>
+                                            <t t-set="i" t-value="i+1"/>
+                                            <div class="brkh-col thead-kpl-2 color-table-2 brkh-center border-pace-col-3 padding-center-4-kpl">
+
+                                                <span t-field="line.priority"/>
+
+                                            </div>
+                                            <div class="brkh-col thead-kpl-3 color-table-2 brkh-center border-pace-col-4 padding-center-4-kpl">
+
+                                                <span t-field="line.code_budget_id.name"/>
+
+                                            </div>
+                                            <div class="brkh-col thead-kpl-4 color-table-2 brkh-goyang-miring-kiri border-pace-col-3 padding-center-4-kpl">
+
+                                                <span t-field="line.name"/>
+
+                                            </div>
+                                            <div class="brkh-col thead-kpl-5 color-table-2 brkh-center border-pace-col-4 padding-center-4-kpl">
+                                                <t t-if="line.merk_barang is False">
+                                                    <![CDATA[
+                                                                &nbsp;
+                                                    ]]>
+                                                </t>
+                                                <t t-if="line.merk_barang is not False">
+                                                    <span t-field="line.merk_barang"/>
+                                                </t>
+                                                <t t-if="line.model_barang is False">
+                                                    <![CDATA[
+                                                                &nbsp;
+                                                    ]]>
+                                                </t>
+                                                <t t-if="line.model_barang is not False">
+                                                    <span t-field="line.model_barang"/>
+                                                </t>
+                                            </div>
+                                            <div class="brkh-col thead-kpl-6 color-table-2 brkh-center border-pace-col-3 padding-center-4-kpl">
+                                                <t t-if="line.nomor_seri is False">
+                                                    <![CDATA[
+                                                                    &nbsp;
+                                                        ]]>
+                                                </t>
+                                                <t t-if="line.nomor_seri is not False">
+                                                    [<span t-field="line.nomor_seri"/>]
+                                                </t>
+                                            </div>
+                                            <div class="brkh-col thead-kpl-7-1 color-table-2 brkh-center border-pace-col-3 padding-center-4-kpl">
+                                                <span t-field="line.product_qty"/>
+
+
+                                            </div>
+                                            <div class="brkh-col thead-kpl-7-2 color-table-2 brkh-center border-pace-col-3 padding-center-4-kpl">
+
+                                                <span t-field="line.product_uom_id.name"/>
+                                            </div>
+                                            <div class="brkh-col thead-kpl-8-1 color-table-2 brkh-center border-pace-col-3 padding-center-4-kpl">
+
+                                                <span t-field="line.last_delivered_date"/>
+                                            </div>
+                                            <div class="brkh-col thead-kpl-8-2 color-table-2 brkh-center border-pace-col-3 padding-center-4-kpl">
+
+                                                <span t-field="line.last_delivered_qty"/>
+                                            </div>
+                                            <div class="brkh-col thead-kpl-9 color-table-2 brkh-center border-pace-col-3 padding-center-4-kpl">
+
+                                                <span t-field="line.remaining_onboards"/>
+
+                                            </div>
+                                            <div class="brkh-col thead-kpl-9 color-table-2 brkh-center border-pace-col-3 padding-center-4-kpl">
+                                                <t t-if="line.project_id.name is False">
+                                                    <![CDATA[
+                                                                &nbsp;
+                                                    ]]>
+                                                </t>
+                                                <t t-if="line.project_id.name is not False">
+                                                    [<span t-field="line.project_id.name"/>]
+                                                </t>
+                                                <span t-field="line.remarks"/>
+                                            </div>
+                                        </div>
+                                    </t>
+                                    <!--                                            ini adalah tbody kosong-->
+                                    <div class="row brkh-row-main brkh-font-3">
+                                        <div class="brkh-col thead-kpl-1 color-table-2 brkh-center border-pace-col-4 padding-center-4-kpl">
+                                            <br/>
+                                            <!--                                             ini emang kosong-->
+                                        </div>
+                                        <div class="brkh-col thead-kpl-2 color-table-2 brkh-center border-pace-col-3 padding-center-4-kpl">
+                                            <br/>
+                                            <!--                                             ini emang kosong-->
+
+                                        </div>
+                                        <div class="brkh-col thead-kpl-3 color-table-2 brkh-center border-pace-col-4 padding-center-4-kpl">
+                                            <br/>
+                                            <!--                                             ini emang kosong-->
+
+                                        </div>
+                                        <div class="brkh-col thead-kpl-4 color-table-2 brkh-center border-pace-col-3 padding-center-4-kpl">
+                                            <br/>
+                                            <!--                                             ini emang kosong-->
+
+                                        </div>
+                                        <div class="brkh-col thead-kpl-5 color-table-2 brkh-center border-pace-col-4 padding-center-4-kpl">
+                                            <br/>
+                                            <!--                                             ini emang kosong-->
+
+                                        </div>
+                                        <div class="brkh-col thead-kpl-6 color-table-2 brkh-center border-pace-col-3 padding-center-4-kpl">
+                                            <br/>
+                                            <!--                                             ini emang kosong-->
+
+                                        </div>
+                                        <div class="brkh-col thead-kpl-7-1 color-table-2 brkh-center border-pace-col-3 padding-center-4-kpl">
+                                            <br/>
+                                            <!--                                             ini emang kosong-->
+
+                                        </div>
+                                        <div class="brkh-col thead-kpl-7-2 color-table-2 brkh-center border-pace-col-3 padding-center-4-kpl">
+                                            <br/>
+                                            <!--                                             ini emang kosong-->
+                                        </div>
+                                        <div class="brkh-col thead-kpl-8-1 color-table-2 brkh-center border-pace-col-3 padding-center-4-kpl">
+                                            <br/>
+                                            <!--                                             ini emang kosong-->
+                                        </div>
+                                        <div class="brkh-col thead-kpl-8-2 color-table-2 brkh-center border-pace-col-3 padding-center-4-kpl">
+                                            <br/>
+                                            <!--                                             ini emang kosong-->
+
+                                        </div>
+                                        <div class="brkh-col thead-kpl-9 color-table-2 brkh-center border-pace-col-3 padding-center-4-kpl">
+                                            <br/>
+                                            <!--                                             ini emang kosong-->
+
+                                        </div>
+                                        <div class="brkh-col thead-kpl-9 color-table-2 brkh-center border-pace-col-3 padding-center-4-kpl">
+                                            <br/>
+                                            <!--                                             ini emang kosong-->
+
+                                        </div>
+                                    </div>
+                                    <!--                                            ini adalah tbody kosong-->
+                                    <div class="row brkh-row-main brkh-font-3">
+                                        <div class="brkh-col thead-kpl-1 color-table-2 brkh-center border-pace-col-4 padding-center-4-kpl">
+                                            <br/>
+                                            <!--                                             ini emang kosong-->
+                                        </div>
+                                        <div class="brkh-col thead-kpl-2 color-table-2 brkh-center border-pace-col-3 padding-center-4-kpl">
+                                            <br/>
+                                            <!--                                             ini emang kosong-->
+
+                                        </div>
+                                        <div class="brkh-col thead-kpl-3 color-table-2 brkh-center border-pace-col-4 padding-center-4-kpl">
+                                            <br/>
+                                            <!--                                             ini emang kosong-->
+
+                                        </div>
+                                        <div class="brkh-col thead-kpl-4 color-table-2 brkh-center border-pace-col-3 padding-center-4-kpl">
+                                            <br/>
+                                            <!--                                             ini emang kosong-->
+
+                                        </div>
+                                        <div class="brkh-col thead-kpl-5 color-table-2 brkh-center border-pace-col-4 padding-center-4-kpl">
+                                            <br/>
+                                            <!--                                             ini emang kosong-->
+
+                                        </div>
+                                        <div class="brkh-col thead-kpl-6 color-table-2 brkh-center border-pace-col-3 padding-center-4-kpl">
+                                            <br/>
+                                            <!--                                             ini emang kosong-->
+
+                                        </div>
+                                        <div class="brkh-col thead-kpl-7-1 color-table-2 brkh-center border-pace-col-3 padding-center-4-kpl">
+                                            <br/>
+                                            <!--                                             ini emang kosong-->
+
+                                        </div>
+                                        <div class="brkh-col thead-kpl-7-2 color-table-2 brkh-center border-pace-col-3 padding-center-4-kpl">
+                                            <br/>
+                                            <!--                                             ini emang kosong-->
+                                        </div>
+                                        <div class="brkh-col thead-kpl-8-1 color-table-2 brkh-center border-pace-col-3 padding-center-4-kpl">
+                                            <br/>
+                                            <!--                                             ini emang kosong-->
+                                        </div>
+                                        <div class="brkh-col thead-kpl-8-2 color-table-2 brkh-center border-pace-col-3 padding-center-4-kpl">
+                                            <br/>
+                                            <!--                                             ini emang kosong-->
+
+                                        </div>
+                                        <div class="brkh-col thead-kpl-9 color-table-2 brkh-center border-pace-col-3 padding-center-4-kpl">
+                                            <br/>
+                                            <!--                                             ini emang kosong-->
+
+                                        </div>
+                                        <div class="brkh-col thead-kpl-9 color-table-2 brkh-center border-pace-col-3 padding-center-4-kpl">
+                                            <br/>
+                                            <!--                                             ini emang kosong-->
+
+                                        </div>
+                                    </div>
+                                    <!--                                            ini adalah tbody kosong-->
+                                    <div class="row brkh-row-main brkh-font-3">
+                                        <div class="brkh-col thead-kpl-1 color-table-2 brkh-center border-pace-col-4 padding-center-4-kpl">
+                                            <br/>
+                                            <!--                                             ini emang kosong-->
+                                        </div>
+                                        <div class="brkh-col thead-kpl-2 color-table-2 brkh-center border-pace-col-3 padding-center-4-kpl">
+                                            <br/>
+                                            <!--                                             ini emang kosong-->
+
+                                        </div>
+                                        <div class="brkh-col thead-kpl-3 color-table-2 brkh-center border-pace-col-4 padding-center-4-kpl">
+                                            <br/>
+                                            <!--                                             ini emang kosong-->
+
+                                        </div>
+                                        <div class="brkh-col thead-kpl-4 color-table-2 brkh-center border-pace-col-3 padding-center-4-kpl">
+                                            <br/>
+                                            <!--                                             ini emang kosong-->
+
+                                        </div>
+                                        <div class="brkh-col thead-kpl-5 color-table-2 brkh-center border-pace-col-4 padding-center-4-kpl">
+                                            <br/>
+                                            <!--                                             ini emang kosong-->
+
+                                        </div>
+                                        <div class="brkh-col thead-kpl-6 color-table-2 brkh-center border-pace-col-3 padding-center-4-kpl">
+                                            <br/>
+                                            <!--                                             ini emang kosong-->
+
+                                        </div>
+                                        <div class="brkh-col thead-kpl-7-1 color-table-2 brkh-center border-pace-col-3 padding-center-4-kpl">
+                                            <br/>
+                                            <!--                                             ini emang kosong-->
+
+                                        </div>
+                                        <div class="brkh-col thead-kpl-7-2 color-table-2 brkh-center border-pace-col-3 padding-center-4-kpl">
+                                            <br/>
+                                            <!--                                             ini emang kosong-->
+                                        </div>
+                                        <div class="brkh-col thead-kpl-8-1 color-table-2 brkh-center border-pace-col-3 padding-center-4-kpl">
+                                            <br/>
+                                            <!--                                             ini emang kosong-->
+                                        </div>
+                                        <div class="brkh-col thead-kpl-8-2 color-table-2 brkh-center border-pace-col-3 padding-center-4-kpl">
+                                            <br/>
+                                            <!--                                             ini emang kosong-->
+
+                                        </div>
+                                        <div class="brkh-col thead-kpl-9 color-table-2 brkh-center border-pace-col-3 padding-center-4-kpl">
+                                            <br/>
+                                            <!--                                             ini emang kosong-->
+
+                                        </div>
+                                        <div class="brkh-col thead-kpl-9 color-table-2 brkh-center border-pace-col-3 padding-center-4-kpl">
+                                            <br/>
+                                            <!--                                             ini emang kosong-->
+
+                                        </div>
+                                    </div>
+                                </t>
+                                <div class="row brkh-row-main">
+                                    <div class="brkh-col khusus-kpl-9 color-table-2 border-pace-top brkh-font-3">
+                                        <br/>
+                                    </div>
+                                </div>
+                                <div class="row brkh-row-main brkh-font-3">
+                                    <div class="brkh-col khusus-kpl-8 color-table-2 border-pace-col-4 brkh-goyang-miring-kiri padding-left-4 font-bold">
+                                        Diisi oleh PIC Operation/Technical&#42;&#42; dan Komentar Jika Ada
+                                    </div>
+                                    <div class="brkh-col khusus-kpl-8 color-table-2 border-pace-col-6 brkh-goyang-miring-kiri padding-left-4 font-bold">
+
+                                    </div>
+                                    <div class="brkh-col khusus-kpl-14 color-table-2 border-pace-col-4 brkh-goyang-miring-kiri padding-left-4 font-bold">
+                                        Diisi oleh Corporate Logistic
+                                    </div>
+                                </div>
+                                <div class="row brkh-row-main brkh-font-3">
+                                    <div class="brkh-col khusus-kpl-8 color-table-2 border-pace-right brkh-goyang-miring-kiri padding-left-top-3">
+                                        <u>Diketahui</u><br/><i>Acknowledge by</i>
+                                    </div>
+                                    <div class="brkh-col khusus-kpl-8 color-table-2 border-pace-right brkh-goyang-miring-kiri padding-left-top-3">
+                                        <u>Disetujui &#42;</u><br/><i>Approved by&#42;</i>
+                                    </div>
+                                    <div class="brkh-col khusus-kpl-14 color-table-2 border-pace-right brkh-goyang-miring-kiri padding-left-top-3">
+                                        <u>Disetujui</u><br/><i>Approved by</i>
+                                    </div>
+                                </div>
+                                <div class="row brkh-row-main">
+                                    <div class="brkh-col khusus-kpl-8 color-table-2 border-pace-right brkh-goyang-miring-kiri padding-left-top-3">
+                                        <br/>
+                                        <img t-attf-src="data:image/*;base64,{{o.sign_checked_1}}"
+                                                     t-att-alt="o.sign_checked_1" style="width: 200px;"/>
+                                        <br/>
+                                    </div>
+                                    <div class="brkh-col khusus-kpl-8 color-table-2 border-pace-right brkh-goyang-miring-kiri padding-left-top-3">
+                                        <br/>
+                                        <img t-attf-src="data:image/*;base64,{{o.sign_checked_2}}"
+                                                     t-att-alt="o.sign_checked_2" style="width: 200px;"/>
+                                        <br/>
+                                    </div>
+                                    <div class="brkh-col khusus-kpl-14 color-table-2 border-pace-right brkh-goyang-miring-kiri padding-left-top-3">
+                                        <br/>
+                                        <img t-attf-src="data:image/*;base64,{{o.sign_final_approve}}"
+                                                     t-att-alt="o.sign_final_approve" style="width: 200px;"/>
+                                        <br/>
+                                    </div>
+                                </div>
+                                <div class="row brkh-row-main brkh-font-3">
+                                    <div class="brkh-col khusus-kpl-8 color-table-2 border-pace-col-10 brkh-goyang-miring-kiri padding-left-top-3">
+                                        <u>Tanda tangan/</u><i>Signature</i><br/><i>Operation Head</i>
+                                    </div>
+                                    <div class="brkh-col khusus-kpl-8 color-table-2 border-pace-col-10 brkh-goyang-miring-kiri padding-left-top-3">
+                                        <u>Tanda tangan/</u><i>Signature</i><br/><i>Marine/Engineer Superintendent</i>
+                                    </div>
+                                    <div class="brkh-col khusus-kpl-14 color-table-2 border-pace-col-10 brkh-goyang-miring-kiri padding-left-top-3">
+                                        <u>Tanda tangan/</u><i>Signature</i><br/><i>Corporate Logistic</i>
+                                    </div>
+                                </div>
+                                <div class="row brkh-row-main">
+                                    <div class="brkh-col khusus-kpl-9 color-table-2 brkh-font-3-kpl border-pace-col-0 padding-center-1 brkh-goyang-miring-kiri">
+                                        <u><i>*) Kategori risiko item yang diminta (L=Low, M=Medium, H=High). Item
+                                            dengan kategori risiko High atau tinggi yaitu jika terlambat pengadaannya
+                                            dapat menyebabkan kecelakaan, kerusakan, atau pencemaran/tumpahan
+                                            minyak.</i></u><br/>
+                                        <u><i> Untuk segera diadakan di atas kapal</i></u>
+                                    </div>
+                                </div>
+                                <div class="row brkh-row-main">
+                                    <div class="brkh-col khusus-kpl-15 color-table-2 brkh-font-3-kpl-black border-pace-col-0 padding-center-1 brkh-goyang-miring-kiri">
+                                        <i>**) Untuk Bagian Deck oleh : Marine Superintendent</i><br/>
+                                        <i> Untuk Bagian Mesin oleh : Engineer Superintendent</i>
+                                    </div>
+                                    <div class="brkh-col khusus-kpl-16 color-table-2 brkh-font-3-kpl-black border-pace-col-0 padding-center-1 brkh-goyang-miring-kiri">
+                                        <i>***) Approval SM Shipping apabila melebihi limit Manager</i><br/>
+                                    </div>
+                                </div>
+                                <div class="row brkh-row-main">
+                                    <div class="brkh-col khusus-kpl-9 color-table-2 brkh-font-3-kpl-black border-pace-col-0 padding-center-1 brkh-goyang-miring-kiri">
+                                        <br/>
+                                        <!--                                             ini emang kosong-->
+
+                                    </div>
+                                </div>
+                                <div class="row brkh-row-main">
+                                    <div class="brkh-col khusus-kpl-9 color-table-2 brkh-font-6 border-pace-col-0 padding-center-1 brkh-goyang-miring-kiri">
+                                        <i>@Copyright PT.Barokah Perkasa Group</i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="footer">
+                        <div class="row brkh-row-main font-bold">
+                            <div class="brkh-col khusus-kpl-9 color-table-2">
+                                <br/>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+                <div class="oe_structure"/>
+            </div>
+        </xpath>
+    </template>
+</odoo>
