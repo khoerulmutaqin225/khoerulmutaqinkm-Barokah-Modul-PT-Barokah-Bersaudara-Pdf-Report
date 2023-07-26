@@ -24,6 +24,7 @@
     # always loaded
     'data': [
         'views/stock_picking.xml',
+        'report/approval_stock_picking_report.xml',
         'security/stock_picking_inherit.xml',
         'security/ir.model.access.csv',
     ],

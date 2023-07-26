@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!-- 
+    <data>
+
+        <report id="menu_report_stock_picking_id"
+            model="stock.picking"
+            string="Print PDF"
+            report_type="qweb-pdf"
+            name="barokah_module.report_data_stock_picking_id"
+            file="barokah_module.report_data_stock_picking_id" />
+
+
+        <template id="report_data_stock_picking_id">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <div class="header" style="padding-top:50px;">
+                        <div class="gambar" text-align="center">
+                            <img align="center" src="/barokah_module/static/description/kop.jpeg"
+                                alt="no image" />
+                        </div>
+                        <table style="border:8px;" width="100%">
+                            <tr style="padding:10px;">
+                                <td style="padding:2px;" width="50%">
+                                    <span t-field="o.name" />
+                                </td>
+                                <td style="padding:2px; text-align:right;" width="50%">
+                                    <span t-field="o.tanggal" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="page">
+                        <style>
+                            table,tr,td{
+                            border: 1px solid black;
+                            border-collapse: collapse;
+
+                            }
+                        </style>
+                        <table width="100%">
+                            <tr>
+                                <td width="40%">
+                                    <span>Product</span>
+                                </td>
+                                <td width="10%">
+                                    <span>Quantity</span>
+                                </td>
+                                <td width="10%">
+                                    <span>Uom</span>
+                                </td>
+                                <td width="20%">
+                                    <span>Price</span>
+                                </td>
+                                <td width="20%">
+                                    <span>Sub Total</span>
+                                </td>
+                            </tr>
+                            <t t-foreach="o.approval_ids" t-as="line">
+                                <tr>
+                                    <td width="20%">
+                                        <span t-field="line.product_id.display_name"></span>
+                                    </td>
+                                    <td width="20%">
+                                        <span t-field="line.description_picking"></span>
+                                    </td>
+                                    <td width="20%">
+                                        <span t-field="line.nomor_do"></span>
+                                    </td>
+                                    <td width="20%">
+                                        <span t-field="line.penerima_do"></span>
+                                    </td>
+                                    <td width="10%">
+                                        <span t-field="line.received_by"></span>
+                                    </td>
+                                    <td width="10%">
+                                        <span t-field="line.requested_by"></span>
+                                    </td>
+                                </tr>
+
+                            </t>
+
+
+                        </table>
+
+                    </div>
+                </t>
+            </t>
+        </template>
+    </data> -->
+
+</odoo>

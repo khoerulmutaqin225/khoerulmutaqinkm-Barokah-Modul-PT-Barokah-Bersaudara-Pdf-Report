@@ -51,6 +51,8 @@ class StockPickingInherit(models.Model):
     )
     
     location_dest_id = fields.Many2one('stock.location', string='Destination Location')
+    location_id = fields.Many2one('stock.location', string='Destination Location')
+
      
     purchase_id = fields.Many2one(
         'purchase.order',
@@ -90,6 +92,10 @@ class StockPickingInherit(models.Model):
         string="Is editable", compute="_compute_is_editable", readonly=True
     )
 
+    # 
+    approval_ids = fields.One2many('stock.move', 'approval_id', string='Approval Lines')
+   
+
     def notATransit(self):
         return self.write({
             "second_state":'nottransit',
@@ -109,6 +115,55 @@ class StockPickingInherit(models.Model):
                 rec.is_editable = False
             else:
                 rec.is_editable = True
+                
+
+
+class StockMoveInherit(models.Model):
+    _inherit = 'stock.move'
+    
+
+    approval_id = fields.Many2one(
+        string='Approval ID',
+        comodel_name='stock.picking',
+        ondelete='restrict',
+    )   
+    
+    location_dest_id = fields.Many2one(
+        'stock.location',
+        related='approval_id.location_dest_id',
+        string='Destination Location'
+    )
+    
+    location_id = fields.Many2one(
+        'stock.location',
+        related='approval_id.location_id',
+        string='Source Location'
+    )
+   
+    
+    
+
+    # Penerima barang
+    penerima_barang = fields.Char(string='Penerima barang')
+    # PIC Pembeli
+    pic_pembeli = fields.Char(string='PIC Pembeli')
+    # Penyiap barang
+    penyiap_barang = fields.Many2one('res.users', string='Penyiap barang')
+    # ttd binary  
+    
+    actual_supply = fields.Date(
+        string='Actual Supply',
+        readonly=False,
+    )
+
+    arrival_date = fields.Datetime(
+        string='Arrival Date',
+        readonly=False,
+        default=fields.Datetime.now(),
+    )
+    
+
+
 
 
 class StockMoveInherit(models.Model):
@@ -153,8 +208,7 @@ class StockMoveInherit(models.Model):
 
     requested_by = fields.Many2one(
         comodel_name="res.users",
-        string="Requested by",
-        readonly=True,
+        string="Requested by"
     )
 
     date_start = fields.Date(
