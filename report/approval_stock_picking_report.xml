@@ -1,92 +1,550 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-<!-- 
-    <data>
 
+    <data>
         <report id="menu_report_stock_picking_id"
             model="stock.picking"
             string="Print PDF"
             report_type="qweb-pdf"
             name="barokah_module.report_data_stock_picking_id"
-            file="barokah_module.report_data_stock_picking_id" />
-
+            file="barokah_module.report_data_stock_picking_id"
+        />
 
         <template id="report_data_stock_picking_id">
             <t t-call="web.html_container">
+                <!-- Melakukan looping di odoo -->
                 <t t-foreach="docs" t-as="o">
-                    <div class="header" style="padding-top:50px;">
-                        <div class="gambar" text-align="center">
-                            <img align="center" src="/barokah_module/static/description/kop.jpeg"
+                    <t t-foreach="o.move_ids_without_package" t-as="line">
+
+                        <!-- <div class="header" style="padding-top:20px;">
+                        <div class="gambar" align="center">
+                            <img align="center" width="100%"
+                                src="/barokah_module/static/description/kop.jpeg"
                                 alt="no image" />
                         </div>
-                        <table style="border:8px;" width="100%">
-                            <tr style="padding:10px;">
-                                <td style="padding:2px;" width="50%">
-                                    <span t-field="o.name" />
-                                </td>
-                                <td style="padding:2px; text-align:right;" width="50%">
-                                    <span t-field="o.tanggal" />
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div class="page">
-                        <style>
-                            table,tr,td{
-                            border: 1px solid black;
-                            border-collapse: collapse;
+                    </div> -->
 
-                            }
-                        </style>
-                        <table width="100%">
-                            <tr>
-                                <td width="40%">
-                                    <span>Product</span>
-                                </td>
-                                <td width="10%">
-                                    <span>Quantity</span>
-                                </td>
-                                <td width="10%">
-                                    <span>Uom</span>
-                                </td>
-                                <td width="20%">
-                                    <span>Price</span>
-                                </td>
-                                <td width="20%">
-                                    <span>Sub Total</span>
-                                </td>
-                            </tr>
-                            <t t-foreach="o.approval_ids" t-as="line">
-                                <tr>
-                                    <td width="20%">
-                                        <span t-field="line.product_id.display_name"></span>
+                        <div class="page" style="padding-top:20px; ">
+
+                            <style>
+                                table{
+                                margin-left: 8px
+                                }
+                            </style>
+
+                            <!-- <table border="0" width="98.5%%">
+                                <tr style="border:none;">
+                                    <td width="10%">
+                                        <span>No. DO </span>
                                     </td>
-                                    <td width="20%">
-                                        <span t-field="line.description_picking"></span>
+                                    <td width="1%">
+                                        <span>:</span>
                                     </td>
-                                    <td width="20%">
+                                    <td width="44%">
                                         <span t-field="line.nomor_do"></span>
+        
                                     </td>
-                                    <td width="20%">
-                                        <span t-field="line.penerima_do"></span>
+                                    <td colspan="2" width="45%" align="left">
+                                        <span>
+                                            <b>SURAT JALAN</b>
+                                        </span>
                                     </td>
+                                </tr>
+                                <tr>
                                     <td width="10%">
-                                        <span t-field="line.received_by"></span>
+                                        <span>
+                                            <p>No. PO </p>
+                                        </span>
                                     </td>
+                                    <td width="1%">
+                                        <span>:</span>
+                                    </td>
+                                    <td width="44%">
+                                        <span t-field="o.name"></span>
+                                    </td>
+                                    <td colspan="2" width="45%">
+                                        <span>
+                                            ........................................................................</span>
+                                    </td>
+                                </tr>
+                                <tr>
                                     <td width="10%">
-                                        <span t-field="line.requested_by"></span>
+                                        <span>KODE. PO</span>
+                                    </td>
+                                    <td width="1%">
+                                        <span>:</span>
+                                    </td>
+                                    <td width="44%">
+                                        <span>....................................</span>
+                                    </td>
+                                    <td colspan="2" width="45%">
+                                        <span>
+                                            ........................................................................</span>
+                                    </td>
+                                </tr>
+                            </table> -->
+                            <br />
+
+
+                            <table border="1" width="98.5%" align="center"
+                                style="border-collapse: collapse">
+                                <tr>
+                                    <th>
+                                        <span t-field="o.name"></span>
+                                    </th>
+                                    <th colspan="2" align-text="center">
+                                        <span t-field="o.name"></span>
+                                    </th>
+                                    <th>
+                                        <span t-field="o.name"></span>
+                                    </th>       
+                                    <th>
+                                        <span>Banyaknya</span>
+                                    </th>
+                                    <th colspan="2" align-text="center">
+                                        <span>NAMA BARANG</span>
+                                    </th>
+                                    <th>
+                                        <span>TGL DO</span>
+                                    </th>       
+                                </tr>
+                                <!-- Melakukan Pengkondisian di odoo -->
+                                <t t-set="i" t-value="1" />
+                                <t t-foreach="o.move_ids_without_package" t-as="line">
+                                    <tr>
+                                        <td>
+                                            <span t-field="line.quantity_done"></span>
+                                        </td>
+                                        <td>
+                                            <span t-field="line.product_uom"></span>
+                                        </td>
+                                        <td>
+                                            <span t-field="line.product_id.display_name"></span>
+                                        </td>
+                                        <td>
+                                            <span t-field="line.penerima_do"></span>
+                                        </td>
+                                    </tr>
+                                </t>
+                                <t t-if="i &lt; 6">
+                                    <t t-foreach="[1,2]" t-as="j">
+                                        <tr>
+                                            <td>
+                                                <span>
+                                                    <p style="color:white">x</p>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span>
+                                                    <p style="color:white">x</p>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span>
+                                                    <p style="color:white">x</p>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span>
+                                                    <p style="color:white">x</p>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </t>
+                            </table>
+
+                            <br />
+                            <table border="0" width="98.5%%">
+
+                                <tr style="border:none;">
+                                    <td width="34%">
+                                        <span>
+                                            <b>Diterima Oleh,</b>
+                                        </span>
+                                    </td>
+                                    <td width="33%" align="left">
+                                        <span>
+                                            <b>Hormat Kami,</b>
+                                        </span>
+                                    </td>
+                                    <td width="33%" align="left">
+                                        <span>
+                                            <b>Disiapkan Oleh,</b>
+                                        </span>
                                     </td>
                                 </tr>
 
-                            </t>
+                                <t t-foreach="o.move_ids_without_package" t-as="line">
+                                    <t t-if="line_index &lt; 1">
+                                        <tr>
+                                            <td width="34%">
+                                                <span>
+                                                    <img
+                                                        t-attf-src="data:image/*;base64,{{line.sign_stock_penerima}}"
+                                                        t-att-alt="line.sign_stock_penerima"
+                                                        style="width: 200px;" />
+                                                </span>
+                                            </td>
+                                            <td width="33%">
+
+                                                <span>
+                                                    <img
+                                                        t-attf-src="data:image/*;base64,{{line.sign_pic_pembeli}}"
+                                                        t-att-alt="line.sign_pic_pembeli"
+                                                        style="width: 200px;" />
+                                                </span>
+                                            </td>
+                                            <td width="33%">
+                                                <span>
+                                                    <img
+                                                        t-attf-src="data:image/*;base64,{{line.sign_penyiap_barang}}"
+                                                        t-att-alt="line.sign_penyiap_barang"
+                                                        style="width: 200px;" />
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </t>
+                            </table>
+
+                            <br />
+
+                            <table border="0" width="98.5%%">
+                                <tr>
+                                    <td width="10%">
+                                        <span>
+                                            <p>Nama </p>
+                                        </span>
+                                    </td>
+                                    <td width="1%">
+                                        <span>:</span>
+                                    </td>
+                                    <td width="23%">
+                                        <span>Khoerul Mutaqin</span>
+                                    </td>
+                                    <td width="10%">
+                                        <span>
+                                            <p>Nama </p>
+                                        </span>
+                                    </td>
+                                    <td width="1%">
+                                        <span>:</span>
+                                    </td>
+                                    <td width="22%">
+                                        <span>Khoerul Mutaqin</span>
+                                    </td>
+                                    <td width="10%">
+                                        <span>
+                                            <p>Nama </p>
+                                        </span>
+                                    </td>
+                                    <td width="1%">
+                                        <span>:</span>
+                                    </td>
+                                    <td width="22%">
+                                        <span>Khoerul Mutaqin</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="10%">
+                                        <span>
+                                            <p>Tanggal </p>
+                                        </span>
+                                    </td>
+                                    <td width="1%">
+                                        <span>:</span>
+                                    </td>
+                                    <td width="23%">
+                                        <span t-esc="o.date.strftime('%d/%m/%Y')" />
+                                    </td>
+                                    <td width="10%">
+                                        <span>
+                                            <p>Tanggal </p>
+                                        </span>
+                                    </td>
+                                    <td width="1%">
+                                        <span>:</span>
+                                    </td>
+                                    <td width="22%">
+                                        <!-- <span t-field="o.date"></span> -->
+                                        <span t-esc="o.date.strftime('%d/%m/%Y')" />
+                                    </td>
+                                    <td width="10%">
+                                        <span>
+                                            <p>Tanggal </p>
+                                        </span>
+                                    </td>
+                                    <td width="1%">
+                                        <span>:</span>
+                                    </td>
+                                    <td width="22%">
+                                        <!-- <span t-field="o.date"></span> -->
+                                        <span t-esc="o.date.strftime('%d/%m/%Y')" />
+                                    </td>
+                                </tr>
+                            </table>
+                            <br/><br/>
+                            <br/><br/>
+                        </div>
 
 
-                        </table>
+                        <!-- <!Page 2   -->
+                        <!-- <div class="page" style="padding-top:20px; ">
+                            <style>
+                                table{
+                                margin-left: 8px
+                                }
 
-                    </div>
+
+                            </style>
+
+                            <table border="0" width="98.5%%">
+                                <tr style="border:none;">
+                                    <td width="10%">
+                                        <span>No. DO </span>
+                                    </td>
+                                    <td width="1%">
+                                        <span>:</span>
+                                    </td>
+                                    <td width="44%">
+                                        <span>BB/JKT-23-001550</span>
+                                    </td>
+                                    <td colspan="2" width="45%" align="left">
+                                        <span>
+                                            <b>SURAT JALAN</b>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="10%">
+                                        <span>
+                                            <p>No. PO </p>
+                                        </span>
+                                    </td>
+                                    <td width="1%">
+                                        <span>:</span>
+                                    </td>
+                                    <td width="44%">
+                                        <span t-field="o.name"></span>
+                                    </td>
+                                    <td colspan="2" width="45%">
+                                        <span>
+                                            ........................................................................</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="10%">
+                                        <span>KODE. PO</span>
+                                    </td>
+                                    <td width="1%">
+                                        <span>:</span>
+                                    </td>
+                                    <td width="44%">
+                                        <span>....................................</span>
+                                    </td>
+                                    <td colspan="2" width="45%">
+                                        <span>
+                                            ........................................................................</span>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br />
+
+                            <table border="1" width="98.5%" align="center"
+                                style="border-collapse: collapse">
+                                <tr>
+                                    <th>
+                                        <span>Banyaknya</span>
+                                    </th>
+                                    <th colspan="2" align-text="center">
+                                        <span>NAMA BARANG</span>
+                                    </th>
+                                    <th>
+                                        <span>TGL DO</span>
+                                    </th>
+                                </tr>
+                                <t t-set="i" t-value="1" />
+                                <t t-foreach="o.move_ids_without_package" t-as="line">
+                                    <tr>
+                                        <td>
+                                            <span t-field="line.quantity_done"></span>
+                                        </td>
+                                        <td>
+                                            <span t-field="line.product_uom"></span>
+                                        </td>
+                                        <td>
+                                            <span t-field="line.product_id.display_name"></span>
+                                        </td>
+                                        <td>
+                                            <span t-field="line.penerima_do"></span>
+                                        </td>
+                                    </tr>
+                                </t>
+                                <t t-if="i &lt; 6">
+                                    <t t-foreach="[1,2]" t-as="j">
+                                        <tr>
+                                            <td>
+                                                <span>
+                                                    <p style="color:white">x</p>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span>
+                                                    <p style="color:white">x</p>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span>
+                                                    <p style="color:white">x</p>
+                                                </span>
+                                            </td>
+                                            <td>
+                                                <span>
+                                                    <p style="color:white">x</p>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </t>
+                            </table>
+
+                            <br />
+                            <table border="0" width="98.5%%">
+
+                                <tr style="border:none;">
+                                    <td width="34%">
+                                        <span>
+                                            <b>Diterima Oleh,</b>
+                                        </span>
+                                    </td>
+                                    <td width="33%" align="left">
+                                        <span>
+                                            <b>Hormat Kami,</b>
+                                        </span>
+                                    </td>
+                                    <td width="33%" align="left">
+                                        <span>
+                                            <b>Disiapkan Oleh,</b>
+                                        </span>
+                                    </td>
+                                </tr>
+
+                                <t t-foreach="o.move_ids_without_package" t-as="line">
+                                    <t t-if="line_index &gt; 1 &amp; line_index &lt; 3 ">
+                                        <tr>
+                                            <td width="34%">
+                                                <span>
+                                                    <img
+                                                        t-attf-src="data:image/*;base64,{{line.sign_pic_pembeli}}"
+                                                        t-att-alt="line.sign_pic_pembeli"
+                                                        style="width: 200px;" />
+                                                </span>
+
+                                            </td>
+                                            <td width="33%">
+                                                <span>
+                                                    <img
+                                                        t-attf-src="data:image/*;base64,{{line.sign_penyiap_barang}}"
+                                                        t-att-alt="line.sign_penyiap_barang"
+                                                        style="width: 200px;" />
+                                                </span>
+                                            </td>
+                                            <td width="33%">
+
+                                                <span>
+                                                    <img
+                                                        t-attf-src="data:image/*;base64,{{line.sign_stock_penerima}}"
+                                                        t-att-alt="line.sign_stock_penerima"
+                                                        style="width: 200px;" />
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </t>
+                            </table>
+
+                            <br />
+
+                            <table border="0" width="98.5%%">
+                                <tr>
+                                    <td width="10%">
+                                        <span>
+                                            <p>Nama </p>
+                                        </span>
+                                    </td>
+                                    <td width="1%">
+                                        <span>:</span>
+                                    </td>
+                                    <td width="23%">
+                                        <span>Khoerul Mutaqin</span>
+                                    </td>
+                                    <td width="10%">
+                                        <span>
+                                            <p>Nama </p>
+                                        </span>
+                                    </td>
+                                    <td width="1%">
+                                        <span>:</span>
+                                    </td>
+                                    <td width="22%">
+                                        <span>Khoerul Mutaqin</span>
+                                    </td>
+                                    <td width="10%">
+                                        <span>
+                                            <p>Nama </p>
+                                        </span>
+                                    </td>
+                                    <td width="1%">
+                                        <span>:</span>
+                                    </td>
+                                    <td width="22%">
+                                        <span>Khoerul Mutaqin</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="10%">
+                                        <span>
+                                            <p>Tanggal </p>
+                                        </span>
+                                    </td>
+                                    <td width="1%">
+                                        <span>:</span>
+                                    </td>
+                                    <td width="23%">
+                                        <span t-esc="o.date.strftime('%d/%m/%Y')" />
+                                    </td>
+                                    <td width="10%">
+                                        <span>
+                                            <p>Tanggal </p>
+                                        </span>
+                                    </td>
+                                    <td width="1%">
+                                        <span>:</span>
+                                    </td>
+                                    <td width="22%">
+                                        <span t-esc="o.date.strftime('%d/%m/%Y')" />
+                                    </td>
+                                    <td width="10%">
+                                        <span>
+                                            <p>Tanggal </p>
+                                        </span>
+                                    </td>
+                                    <td width="1%">
+                                        <span>:</span>
+                                    </td>
+                                    <td width="22%">
+                                        <span t-esc="o.date.strftime('%d/%m/%Y')" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </div> -->
+
+                    </t>
                 </t>
             </t>
+
         </template>
-    </data> -->
+    </data>
 
 </odoo>

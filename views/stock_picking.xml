@@ -79,6 +79,7 @@
                 <field name="transit_ready_date" invisible="1" />
                 <field name="second_state" invisible="1" />
                 <field name="picking_type_code" invisible="1" />
+                <field name="sign_stock_penerima" />
                 <field name="move_type" invisible="1" />
                 <field name="company_id" invisible="1" />
             </xpath>
@@ -105,7 +106,7 @@
             </xpath>
             <xpath
                 expr="//field[@name='move_ids_without_package']/tree//field[@name='product_id']"
-                position="before">
+                position="before">  
                 <field name="requested_by" />
                 <!--                <field name="name_product"/>-->
             </xpath>
@@ -124,6 +125,17 @@
                 <field name="status_list" />
                 <field name="keterangan_status" string="Status Supply" />
                 <field name="remark" string="Ket." />
+
+                <!-- Tambahan -->
+                                
+                <field name="penerima_barang" string="Penerima." optional="hide"/>
+                <field name="pic_pembeli" string="PIC Pembeli" optional="hide"/>
+                <field name="penyiap_barang" string="Penerima Barang" optional="hide"/>
+                <field name="sign_stock_penerima" string="Penerima Barang" optional="hide"/>
+                <field name="sign_pic_pembeli" string="Pic Pembeli Barang" optional="hide"/>
+                <field name="sign_penyiap_barang" string="Penyiap Barang" optional="hide"/> 
+                
+
             </xpath>
             <xpath
                 expr="//field[@name='move_ids_without_package']/tree//field[@name='product_uom']"
@@ -205,33 +217,10 @@
                             <field name="requested_by"/>
                             <field name="location_id"  invisible="1"/>
                             <field name="location_dest_id" invisible="1"/>
-                            
                             <field name="approval_id" invisible="1"/>
-
                         </tree>
-                        <form string="Approval ID">
-                            <header>
-                                <field name="state" widget="statusbar"/>
-                            </header>
-      
-                            <group>
-                                <field name="product_uom_category_id" invisible="1"/>
-                                <field name="additional" invisible="1"/>
-                                <field name="has_move_lines" invisible="1"/>
-                                <field name="company_id" invisible="1"/>
-                                <field name="product_id" required="1" attrs="{'readonly': ['|', '&amp;', ('state', '!=', 'draft'), ('additional', '=', False), ('has_move_lines', '=', True)]}"/>
-                                <field name="is_initial_demand_editable" invisible="1"/>
-                                <field name="is_quantity_done_editable" invisible="1"/>
-                                <field name="product_uom_qty" string="Initial Demand" attrs="{'invisible': [('parent.immediate_transfer', '=', True)], 'readonly': [('is_initial_demand_editable', '=', False)]}"/>
-                                <field name="reserved_availability" string="Reserved" attrs="{'invisible': (['|','|', ('parent.state','=', 'done'), ('parent.picking_type_code', '=', 'incoming'), ('parent.immediate_transfer', '=', True)])}"/>
-                                <field name="quantity_done" string="Done" attrs="{'readonly': [('is_quantity_done_editable', '=', False)]}"/>
-                                <field name="product_uom" attrs="{'readonly': [('state', '!=', 'draft'), ('id', '!=', False)]}" options="{'no_open': True, 'no_create': True}" string="Unit of Measure" groups="uom.group_uom"/>
-                                <field name="description_picking" string="Description"/>
-                            </group>
-                        </form>
                     </field>
                 </page>
-
             </notebook>
 
         </field>

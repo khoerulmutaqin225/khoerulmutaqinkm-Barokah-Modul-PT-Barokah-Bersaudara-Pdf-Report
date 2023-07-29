@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from odoo import models, fields, api
+from odoo import models, fields,  _,api
 from odoo.tools.float_utils import float_compare, float_is_zero, float_round
 from odoo.exceptions import ValidationError
 from odoo.exceptions import UserError
@@ -49,9 +49,6 @@ class StockPickingInherit(models.Model):
     siap_validate = fields.Boolean(
         string="Siap Validate", compute='_compute_siap_validate',readonly=True, default=False, store=True
     )
-    
-    location_dest_id = fields.Many2one('stock.location', string='Destination Location')
-    location_id = fields.Many2one('stock.location', string='Destination Location')
 
      
     purchase_id = fields.Many2one(
@@ -107,7 +104,55 @@ class StockPickingInherit(models.Model):
             "second_state": "transit",
             "transit_ready_date": fields.Datetime.now
         })
+    # Penerima barang
+    # penerima_barang = fields.Many2one('res.users',string='Penerima barang')
+    sign_stock_penerima = fields.Binary(
+        string='sign_stock_penerima',
+    )
 
+    # PIC Pembeli
+    # pic_pembeli = fields.Many2one('res.users',string='PIC Pembeli')
+    sign_pic_pembeli = fields.Binary(
+        string='sign_pic_pembeli',
+    )
+
+    # Penyiap barang
+    # penyiap_barang = fields.Many2one('res.users', string='Penyiap barang')
+    sign_penyiap_barang = fields.Binary(
+        string='sign_penyiap_barang',
+    )    
+            
+    # @api.depends('move_ids_without_package')
+    # def _compute_ttd(self):
+    #     for record in self:
+    #         if not record.move_ids_without_package:
+    #             return{}
+    #         else:
+    #             record.sign_stock_penerima = record.move_ids_without_package.sign_stock_penerima
+                # record.sign_pic_pembeli = record.move_ids_without_package.sign_pic_pembeli
+                # record.sign_penyiap_barang = record.move_ids_without_package.sign_penyiap_barang
+                # return{}
+    # @api.depends('move_ids_without_package')
+    # def _compute_ttd(self):
+    #     for record in self:
+    #         if not record.move_ids_without_package:
+    #             return{}
+    #         else:
+                # record.sign_stock_penerima = record.move_ids_without_package.sign_stock_penerima
+                # record.sign_pic_pembeli = record.move_ids_without_package.sign_pic_pembeli
+                # record.sign_penyiap_barang = record.move_ids_without_package.sign_penyiap_barang
+                # return{}
+    # @api.depends('move_ids_without_package')
+    # def _compute_ttd(self):
+    #     for record in self:
+    #         if not record.move_ids_without_package:
+    #             return{}
+    #         else:
+                # record.sign_stock_penerima = record.move_ids_without_package.sign_stock_penerima
+                # record.sign_pic_pembeli = record.move_ids_without_package.sign_pic_pembeli
+                # record.sign_penyiap_barang = record.move_ids_without_package.sign_penyiap_barang
+                # return{}
+            
     @api.depends("state")
     def _compute_is_editable(self):
         for rec in self:
@@ -126,30 +171,37 @@ class StockMoveInherit(models.Model):
         string='Approval ID',
         comodel_name='stock.picking',
         ondelete='restrict',
-    )   
-    
-    location_dest_id = fields.Many2one(
-        'stock.location',
-        related='approval_id.location_dest_id',
-        string='Destination Location'
     )
     
-    location_id = fields.Many2one(
-        'stock.location',
-        related='approval_id.location_id',
-        string='Source Location'
-    )
-   
+    @api.onchange('penerima_barang')
+    def func_onchange_penerima_barang(self):
+        if not self.penerima_barang:
+            return{}
+        else:
+            self.sign_stock_penerima = self.penerima_barang.sign_x
+            return{}
     
+    @api.onchange('pic_pembeli')
+    def func_onchange_pic_pembeli(self):
+        if not self.pic_pembeli:
+            return{}
+        else:
+            self.sign_pic_pembeli = self.pic_pembeli.sign_x
+            return{}
     
 
     # Penerima barang
-    penerima_barang = fields.Char(string='Penerima barang')
+    penerima_barang = fields.Many2one('res.users',string='Penerima barang')
+    sign_stock_penerima = fields.Binary('sign_stock_penerima')
+
     # PIC Pembeli
-    pic_pembeli = fields.Char(string='PIC Pembeli')
+    pic_pembeli = fields.Many2one('res.users',string='PIC Pembeli')
+    sign_pic_pembeli = fields.Binary('sign_pic_pembeli')
+
     # Penyiap barang
     penyiap_barang = fields.Many2one('res.users', string='Penyiap barang')
-    # ttd binary  
+    sign_penyiap_barang = fields.Binary('sign_penyiap_barang')    
+    
     
     actual_supply = fields.Date(
         string='Actual Supply',
@@ -191,6 +243,15 @@ class StockMoveInherit(models.Model):
     received_by = fields.Char(
         string='Received By',
     )
+    
+    # pic_pembeli
+    
+    # penyiap_barang
+    
+    # penerima_do
+    
+    
+    # Penyebab error usage
 
     # received_by = fields.Many2one(
     #     'res.users',
@@ -303,10 +364,10 @@ class StockMoveInherit(models.Model):
 
     date_done = fields.Datetime('Actual Supply', help="Date at which the transfer has been processed or cancelled.")
 
-    # date_done = fields.Datetime('Actual Supply', copy=False, readonly=True,
-    #                             related='picking_id.date_done',
-    #                             store=True,
-    #                             help="Date at which the transfer has been processed or cancelled.")
+    date_done = fields.Datetime('Actual Supply', copy=False, readonly=True,
+                                related='picking_id.date_done',
+                                store=True,
+                                help="Date at which the transfer has been processed or cancelled.")
 
     vendor_id = fields.Many2one('res.partner', string='Vendor', readonly=True,)
 
@@ -316,7 +377,7 @@ class StockMoveInherit(models.Model):
 
     # code_vessel = fields.Char(
     #     tring='Kode Kapal',
-    #     related='vessel_id.code_vessel',
+    #     related='vessel_id.code_vessssel',
     #     readonly=True,
     # )
 
