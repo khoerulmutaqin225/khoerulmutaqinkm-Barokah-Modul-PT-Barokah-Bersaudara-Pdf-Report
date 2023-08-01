@@ -1,6 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <odoo>
+    <record id="view_report_stock_picking_form" model="ir.ui.view">
+        <field name="name">stock.picking.report.wizard.form</field>
+        <field name="model">stock.picking.report.wizard</field>
+        <!-- <field name="priority">999</field> -->
+        <field name="arch" type="xml">
+            <form string="Reporting Stock Picking">
+                <sheet>
+                    <group col="4">
+                        <field name="nomor_do" string="Nomor DO" />
+                        <!-- <field name="purchase_id" /> -->
+                    </group>
+                </sheet>
+                <footer>
+                    <!-- <button type="object" name="print" string="Print" class="btn-primary" /> -->
+                    <button type="object" name="debug_v2" string="Print" class="btn-primary" />
+                    <button string="Cancel" class="btn-default" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="actions_stock_picking" model="ir.actions.act_window">
+        <field name="name">Report Stock Picking</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">stock.picking.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_report_stock_picking_form" />
+        <field name="target">new</field>
+        <field name="help" type="html">
+            <p class="oe_view_nocontent_create">No Data
+            </p>
+        </field>
+    </record>
+
+    <!-- File Report -->
+    <record id="actions_print_stock_picking" model="ir.actions.report">
+        <field name="name">Approval </field>
+        <field name="model">stock.picking.report.wizard</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">barokah_module.report_data_stock_picking_id</field>
+        <field name="report_file">barokah_module.report_data_stock_picking_id</field>
+        <field name="binding_model_id" ref="model_stock_picking_report_wizard" />
+        <field name="binding_type">report</field>
+    </record>
+
+
     <record id="view_picking_form_inherit" model="ir.ui.view">
         <field name="name">stock.picking.inherit</field>
         <field name="model">stock.picking</field>
@@ -13,6 +59,12 @@
             <xpath expr="/form/header/button[@name='button_validate']" position="after">
                 <button name="button_multiple_Validate" string="Multiple Validate" type="object"
                     class="oe_highlight" invisible="1" />
+                <button
+                    name="%(barokah_module.actions_stock_picking)d"
+                    string="Print Out"
+                    type="action"
+                    class="oe_highlight"
+                />
                 <!--                <button-->
                 <!--                        name="notATransit"-->
                 <!--                        string="Non Transit"-->
@@ -106,7 +158,7 @@
             </xpath>
             <xpath
                 expr="//field[@name='move_ids_without_package']/tree//field[@name='product_id']"
-                position="before">  
+                position="before">
                 <field name="requested_by" />
                 <!--                <field name="name_product"/>-->
             </xpath>
@@ -120,21 +172,21 @@
                 position="after">
                 <field name="sisa_supply" string="Sisa Supply" />
                 <field name="actual_supply" string="Tanggal Supply" />
-                <!-- <field name="nomor_do" /> -->
+                <field name="nomor_do" />
                 <!-- <field name="penerima_do" /> -->
                 <field name="status_list" />
                 <field name="keterangan_status" string="Status Supply" />
                 <field name="remark" string="Ket." />
 
                 <!-- Tambahan -->
-                                
-                <field name="penerima_barang" string="Penerima." optional="hide"/>
-                <field name="pic_pembeli" string="PIC Pembeli" optional="hide"/>
-                <field name="penyiap_barang" string="Penerima Barang" optional="hide"/>
-                <field name="sign_stock_penerima" string="Penerima Barang" optional="hide"/>
-                <field name="sign_pic_pembeli" string="Pic Pembeli Barang" optional="hide"/>
-                <field name="sign_penyiap_barang" string="Penyiap Barang" optional="hide"/> 
-                
+
+                <field name="penerima_barang" string="Penerima." />
+                <field name="pic_pembeli" string="PIC Pembeli" />
+                <field name="penyiap_barang" string="Penerima Barang" />
+                <field name="sign_stock_penerima" string="Penerima Barang" optional="hide" />
+                <field name="sign_pic_pembeli" string="Pic Pembeli Barang" optional="hide" />
+                <field name="sign_penyiap_barang" string="Penyiap Barang" optional="hide" />
+
 
             </xpath>
             <xpath
@@ -178,46 +230,61 @@
                 <page string="Approval" name="approval">
                     <field name="approval_ids">
                         <tree string="Approval" editable="bottom">
-                            <field name="company_id" invisible="1"/>
-                            <field name="name" invisible="1"/>
-                            <field name="state" invisible="1" readonly="0"/>
-                            <field name="picking_type_id" invisible="1"/>
-                            <field name="location_id" invisible="1"/>
-                            <field name="location_dest_id" invisible="1"/>
-                            <field name="scrapped" invisible="1"/>
-                            <field name="picking_code" invisible="1"/>
-                            <field name="product_type" invisible="1"/>
-                            <field name="show_details_visible" invisible="1"/>
-                            <field name="show_reserved_availability" invisible="1"/>
-                            <field name="show_operations" invisible="1" readonly="1"/>
-                            <field name="additional" invisible="1"/>
-                            <field name="has_move_lines" invisible="1"/>
-                            <field name="is_locked" invisible="1"/>
-                            <field name="product_uom_category_id" invisible="1"/>
-                            <field name="has_tracking" invisible="1"/>
-                            <field name="display_assign_serial" invisible="1"/>
-                            <field name="product_id" required="1" attrs="{'readonly': ['|', '&amp;', ('state', '!=', 'draft'), ('additional', '=', False), ('has_move_lines', '=', True)]}"/>
-                            <field name="description_picking"  invisible="1" string="Description" optional="hide"/>
-                            <field name="date_expected"  invisible="1" optional="hide" domain="{'readonly': [('show_operations', '=', True), ('is_locked', '=', True)]}"/>
-                            <field name="is_initial_demand_editable" invisible="1"/>
-                            <field name="is_quantity_done_editable" invisible="1"/>
-                            <field name="product_uom_qty"  invisible="1" string="Demand" attrs="{'column_invisible': [('parent.immediate_transfer', '=', True)], 'readonly': ['|', ('is_initial_demand_editable', '=', False), '&amp;', '&amp;', ('show_operations', '=', True), ('is_locked', '=', True), ('is_initial_demand_editable', '=', False)]}"/>
-                            <field name="reserved_availability" string="Reserved" attrs="{'column_invisible': (['|','|', ('parent.state','=', 'done'), ('parent.picking_type_code', '=', 'incoming'), ('parent.immediate_transfer', '=', True)])}"/>
-                            <field name="quantity_done"  invisible="1" string="Done" attrs="{'readonly': [('is_quantity_done_editable', '=', False)]}"/>
-                            <field name="product_uom" attrs="{'readonly': [('state', '!=', 'draft'), ('id', '!=', False)]}" options="{'no_open': True, 'no_create': True}" string="Unit of Measure" groups="uom.group_uom"/>
-                            <button name="action_show_details" string="Register lots, packs, location" type="object" icon="fa-list" width="0.1" attrs="{'invisible': [('show_details_visible', '=', False)]}" options="{&quot;warn&quot;: true}"/>
-                            <button name="action_assign_serial" type="object" icon="fa-plus-square" width="0.1" role="img" title="Assign Serial Numbers" attrs="{'invisible': ['|', ('display_assign_serial', '=', False), ('show_operations', '=', False)]}"/>
+                            <field name="company_id" invisible="1" />
+                            <field name="name" invisible="1" />
+                            <field name="state" invisible="1" readonly="0" />
+                            <field name="picking_type_id" invisible="1" />
+                            <field name="location_id" invisible="1" />
+                            <field name="location_dest_id" invisible="1" />
+                            <field name="scrapped" invisible="1" />
+                            <field name="picking_code" invisible="1" />
+                            <field name="product_type" invisible="1" />
+                            <field name="show_details_visible" invisible="1" />
+                            <field name="show_reserved_availability" invisible="1" />
+                            <field name="show_operations" invisible="1" readonly="1" />
+                            <field name="additional" invisible="1" />
+                            <field name="has_move_lines" invisible="1" />
+                            <field name="is_locked" invisible="1" />
+                            <field name="product_uom_category_id" invisible="1" />
+                            <field name="has_tracking" invisible="1" />
+                            <field name="display_assign_serial" invisible="1" />
+                            <field name="product_id" required="1"
+                                attrs="{'readonly': ['|', '&amp;', ('state', '!=', 'draft'), ('additional', '=', False), ('has_move_lines', '=', True)]}" />
+                            <field name="description_picking" invisible="1" string="Description"
+                                optional="hide" />
+                            <field name="date_expected" invisible="1" optional="hide"
+                                domain="{'readonly': [('show_operations', '=', True), ('is_locked', '=', True)]}" />
+                            <field name="is_initial_demand_editable" invisible="1" />
+                            <field name="is_quantity_done_editable" invisible="1" />
+                            <field name="product_uom_qty" invisible="1" string="Demand"
+                                attrs="{'column_invisible': [('parent.immediate_transfer', '=', True)], 'readonly': ['|', ('is_initial_demand_editable', '=', False), '&amp;', '&amp;', ('show_operations', '=', True), ('is_locked', '=', True), ('is_initial_demand_editable', '=', False)]}" />
+                            <field name="reserved_availability" string="Reserved"
+                                attrs="{'column_invisible': (['|','|', ('parent.state','=', 'done'), ('parent.picking_type_code', '=', 'incoming'), ('parent.immediate_transfer', '=', True)])}" />
+                            <field name="quantity_done" invisible="1" string="Done"
+                                attrs="{'readonly': [('is_quantity_done_editable', '=', False)]}" />
+                            <field name="product_uom"
+                                attrs="{'readonly': [('state', '!=', 'draft'), ('id', '!=', False)]}"
+                                options="{'no_open': True, 'no_create': True}"
+                                string="Unit of Measure" groups="uom.group_uom" />
+                            <button name="action_show_details"
+                                string="Register lots, packs, location" type="object" icon="fa-list"
+                                width="0.1"
+                                attrs="{'invisible': [('show_details_visible', '=', False)]}"
+                                options="{&quot;warn&quot;: true}" />
+                            <button name="action_assign_serial" type="object" icon="fa-plus-square"
+                                width="0.1" role="img" title="Assign Serial Numbers"
+                                attrs="{'invisible': ['|', ('display_assign_serial', '=', False), ('show_operations', '=', False)]}" />
                             <!-- Pemisah -->
-                            <field name="product_id" invisible="1"/>
-                            <field name="name"  invisible="1"/>
-                            <field name="company_id"  invisible="1"/>
-                            <field name="nomor_do"/>
-                            <field name="penerima_do"/>
-                            <field name="received_by"/>
-                            <field name="requested_by"/>
-                            <field name="location_id"  invisible="1"/>
-                            <field name="location_dest_id" invisible="1"/>
-                            <field name="approval_id" invisible="1"/>
+                            <field name="product_id" invisible="1" />
+                            <field name="name" invisible="1" />
+                            <field name="company_id" invisible="1" />
+                            <field name="nomor_do" />
+                            <field name="penerima_do" />
+                            <field name="received_by" />
+                            <field name="requested_by" />
+                            <field name="location_id" invisible="1" />
+                            <field name="location_dest_id" invisible="1" />
+                            <field name="approval_id" invisible="1" />
                         </tree>
                     </field>
                 </page>
@@ -225,4 +292,11 @@
 
         </field>
     </record>
+
+    <!-- <menuitem
+        id="child_stock_picking_report_wizard_id"
+        name="Report"
+        sequence="3"
+        parent=""
+        action="" /> -->
 </odoo>

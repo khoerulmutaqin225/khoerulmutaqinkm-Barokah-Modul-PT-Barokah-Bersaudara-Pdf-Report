@@ -2,140 +2,145 @@
 <odoo>
 
     <data>
-        <report id="menu_report_stock_picking_id"
+        <!-- <report id="menu_report_stock_picking_id"
             model="stock.picking"
             string="Print PDF"
             report_type="qweb-pdf"
             name="barokah_module.report_data_stock_picking_id"
             file="barokah_module.report_data_stock_picking_id"
-        />
+        /> -->
 
 
         <template id="report_data_stock_picking_id">
             <t t-call="web.html_container">
                 <!-- Melakukan looping di odoo -->
-                <t t-foreach="docs" t-as="o">
-                    <t t-foreach="o.move_ids_without_package" t-as="line">
+                <!-- <t t-foreach="docs" t-as="o"> -->
+                <!-- <t t-foreach="o.move_ids_without_package" t-as="line"> -->
 
-                        <div class="header" style="padding-top:20px;">
-                            <div class="gambar" align="center">
-                                <img align="center" width="100%"
-                                    src="/barokah_module/static/description/kop.jpeg"
-                                    alt="no image" />
-                            </div>
-                        </div>
+                <div class="header" style="padding-top:20px;">
+                    <div class="gambar" align="center">
+                        <img align="center" width="100%"
+                            src="/barokah_module/static/description/kop.jpeg"
+                            alt="no image" />
+                    </div>
+                </div>
 
-                        <div class="page" style="padding-top:20px; ">
+                <div class="page" style="padding-top:20px; ">
 
-                            <style>
-                                table{
-                                margin-left: 8px
-                                }
-                            </style>
-
-
-                            <table border="0" width="98.5%%">
-                                <tr style="border:none;">
-                                    <td width="10%">
-                                        <span>No. DO </span>
-                                    </td>
-                                    <td width="1%">
-                                        <span>:</span>
-                                    </td>
-                                    <td width="44%">
-                                        <span t-field="line.nomor_do"></span>
-
-                                    </td>
-                                    <td colspan="2" width="45%" align="left">
-                                        <span>
-                                            <b>SURAT JALAN</b>
-                                        </span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td width="10%">
-                                        <span>
-                                            <p>No. PO </p>
-                                        </span>
-                                    </td>
-                                    <td width="1%">
-                                        <span>:</span>
-                                    </td>
-                                    <td width="44%">
-                                        <span t-field="o.name"></span>
-                                    </td>
-                                    <td colspan="2" width="45%">
-                                        <span>
-                                            ........................................................................</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td width="10%">
-                                        <span>KODE. PO</span>
-                                    </td>
-                                    <td width="1%">
-                                        <span>:</span>
-                                    </td>
-                                    <td width="44%">
-                                        <span>....................................</span>
-                                    </td>
-                                    <td colspan="2" width="45%">
-                                        <span>
-                                            ........................................................................</span>
-                                    </td>
-                                </tr>
-                            </table>
-                            <br />
+                    <style>
+                        table{
+                        margin-left: 8px
+                        }
+                    </style>
 
 
-                            <table border="1" width="98.5%" align="center"
-                                style="border-collapse: collapse">
-                                <tr>
-                                    <th>
-                                        <span t-field="o.name"></span>
-                                    </th>
-                                    <th colspan="2" align-text="center">
-                                        <span t-field="o.name"></span>
-                                    </th>
-                                    <th>
-                                        <span t-field="o.name"></span>
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th>
-                                        <span>Banyaknya</span>
-                                    </th>
-                                    <th colspan="2" align-text="center">
-                                        <span>NAMA BARANG</span>
-                                    </th>
-                                    <th>
-                                        <span>TGL DO</span>
-                                    </th>
-                                </tr>
-                                <!-- Melakukan Pengkondisian di odoo -->
-                                <!--<t
+                    <table border="0" width="98.5%%">
+                        <tr style="border:none;">
+                            <td width="10%">
+                                <span>No. DO </span>
+                            </td>
+                            <td width="1%">
+                                <span>:</span>
+                            </td>
+                            <td width="44%">
+                                <!-- <span t-field="line.nomor_do"></span> -->
+                                <t t-esc="form['nomor_do'][1]" />
+                                <!-- <span>1</span> -->
+
+                            </td>
+                            <td colspan="2" width="45%" align="left">
+                                <span>
+                                    <b>SURAT JALAN</b>
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="10%">
+                                <span>
+                                    <p>No. PO </p>
+                                </span>
+                            </td>
+                            <td width="1%">
+                                <span>:</span>
+                            </td>
+                            <td width="44%">
+                                <span>HERU</span>
+                                <!-- <span t-field="o.name"></span> -->
+                            </td>
+                            <td colspan="2" width="45%">
+                                <span>
+                                    ........................................................................</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="10%">
+                                <span>KODE. PO</span>
+                            </td>
+                            <td width="1%">
+                                <span>:</span>
+                            </td>
+                            <td width="44%">
+                                <span>....................................</span>
+                            </td>
+                            <td colspan="2" width="45%">
+                                <span>
+                                    ........................................................................</span>
+                            </td>
+                        </tr>
+                    </table>
+                    <br />
+
+
+                    <table border="1" width="98.5%" align="center"
+                        style="border-collapse: collapse">
+                        <tr>
+                            <th>
+                                <span>Test</span>
+                                <!-- <span t-field="o.name"></span> -->
+                            </th>
+                            <th colspan="2" align-text="center">
+                                <!-- <span t-field="o.name"></span> -->
+                                <span>Test</span>
+
+                            </th>
+                            <th>
+                                <!-- <span t-field="o.name"></span> -->
+                                <span>Test</span>
+
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <span>Banyaknya</span>
+                            </th>
+                            <th colspan="2" align-text="center">
+                                <span>NAMA BARANG</span>
+                            </th>
+                            <th>
+                                <span>TGL DO</span>
+                            </th>
+                        </tr>
+                        <!-- Melakukan Pengkondisian di odoo -->
+                        <!--<t
                                 t-set="i" t-value="1" />-->
-                                <t t-foreach="o.move_ids_without_package" t-as="line">
-                                    <t
-                                        t-if="line.nomor_do == o.move_ids_without_package[0].nomor_do[0]">
-                                        <tr>
-                                            <td>
-                                                <span t-field="line.quantity_done"></span>
-                                            </td>
-                                            <td>
-                                                <span t-field="line.product_uom"></span>
-                                            </td>
-                                            <td>
-                                                <span t-field="line.product_id.display_name"></span>
-                                            </td>
-                                            <td>
-                                                <span t-field="line.penerima_do"></span>
-                                            </td>
-                                        </tr>
-                                    </t>
-                                </t>
+                        <t t-foreach="stocks" t-as="o">
+                            <tr>
+                                <td>
+                                    <span t-esc="o['name']"></span>
+                                </td>
+                                <td>
+                                    <span t-esc="o['name']"></span>
+                                </td>
+                                <td>
+                                    <span t-esc="o['name']"></span>
+                                </td>
+                                <td>
+                                    <span t-esc="o['name']"></span>
+                                </td>
+                            </tr>
+                        </t>
 
-                                <!-- <t t-if="i &lt; 6">
+                        <!-- <t t-if="i &lt; 6">
                                     <t t-foreach="[1,2]" t-as="j">
                                         <tr>
                                             <td>
@@ -161,30 +166,30 @@
                                         </tr>
                                     </t>
                                 </t> -->
-                            </table>
+                    </table>
 
-                            <br />
-                            <table border="0" width="98.5%%">
+                    <br />
+                    <table border="0" width="98.5%%">
 
-                                <tr style="border:none;">
-                                    <td width="34%">
-                                        <span>
-                                            <b>Diterima Oleh,</b>
-                                        </span>
-                                    </td>
-                                    <td width="33%" align="left">
-                                        <span>
-                                            <b>Hormat Kami,</b>
-                                        </span>
-                                    </td>
-                                    <td width="33%" align="left">
-                                        <span>
-                                            <b>Disiapkan Oleh,</b>
-                                        </span>
-                                    </td>
-                                </tr>
+                        <tr style="border:none;">
+                            <td width="34%">
+                                <span>
+                                    <b>Diterima Oleh,</b>
+                                </span>
+                            </td>
+                            <td width="33%" align="left">
+                                <span>
+                                    <b>Hormat Kami,</b>
+                                </span>
+                            </td>
+                            <td width="33%" align="left">
+                                <span>
+                                    <b>Disiapkan Oleh,</b>
+                                </span>
+                            </td>
+                        </tr>
 
-                                <t t-foreach="o.move_ids_without_package" t-as="line">
+                        <!-- <t t-foreach="o.move_ids_without_package" t-as="line">
                                     <t t-if="line_index &lt; 1">
                                         <tr>
                                             <td width="34%">
@@ -214,93 +219,93 @@
                                             </td>
                                         </tr>
                                     </t>
-                                </t>
-                            </table>
+                                </t> -->
+                    </table>
 
-                            <br />
+                    <br />
 
-                            <table border="0" width="98.5%%">
-                                <tr>
-                                    <td width="10%">
-                                        <span>
-                                            <p>Nama </p>
-                                        </span>
-                                    </td>
-                                    <td width="1%">
-                                        <span>:</span>
-                                    </td>
-                                    <td width="23%">
-                                        <span>Khoerul Mutaqin</span>
-                                    </td>
-                                    <td width="10%">
-                                        <span>
-                                            <p>Nama </p>
-                                        </span>
-                                    </td>
-                                    <td width="1%">
-                                        <span>:</span>
-                                    </td>
-                                    <td width="22%">
-                                        <span>Khoerul Mutaqin</span>
-                                    </td>
-                                    <td width="10%">
-                                        <span>
-                                            <p>Nama </p>
-                                        </span>
-                                    </td>
-                                    <td width="1%">
-                                        <span>:</span>
-                                    </td>
-                                    <td width="22%">
-                                        <span>Khoerul Mutaqin</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td width="10%">
-                                        <span>
-                                            <p>Tanggal </p>
-                                        </span>
-                                    </td>
-                                    <td width="1%">
-                                        <span>:</span>
-                                    </td>
-                                    <td width="23%">
-                                        <span t-esc="o.date.strftime('%d/%m/%Y')" />
-                                    </td>
-                                    <td width="10%">
-                                        <span>
-                                            <p>Tanggal </p>
-                                        </span>
-                                    </td>
-                                    <td width="1%">
-                                        <span>:</span>
-                                    </td>
-                                    <td width="22%">
-                                        <!-- <span t-field="o.date"></span> -->
-                                        <span t-esc="o.date.strftime('%d/%m/%Y')" />
-                                    </td>
-                                    <td width="10%">
-                                        <span>
-                                            <p>Tanggal </p>
-                                        </span>
-                                    </td>
-                                    <td width="1%">
-                                        <span>:</span>
-                                    </td>
-                                    <td width="22%">
-                                        <!-- <span t-field="o.date"></span> -->
-                                        <span t-esc="o.date.strftime('%d/%m/%Y')" />
-                                    </td>
-                                </tr>
-                            </table>
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                            <br />
-                        </div>
-                    </t>
-                </t>
+                    <table border="0" width="98.5%%">
+                        <tr>
+                            <td width="10%">
+                                <span>
+                                    <p>Nama </p>
+                                </span>
+                            </td>
+                            <td width="1%">
+                                <span>:</span>
+                            </td>
+                            <td width="23%">
+                                <span>Khoerul Mutaqin</span>
+                            </td>
+                            <td width="10%">
+                                <span>
+                                    <p>Nama </p>
+                                </span>
+                            </td>
+                            <td width="1%">
+                                <span>:</span>
+                            </td>
+                            <td width="22%">
+                                <span>Khoerul Mutaqin</span>
+                            </td>
+                            <td width="10%">
+                                <span>
+                                    <p>Nama </p>
+                                </span>
+                            </td>
+                            <td width="1%">
+                                <span>:</span>
+                            </td>
+                            <td width="22%">
+                                <span>Khoerul Mutaqin</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="10%">
+                                <span>
+                                    <p>Tanggal </p>
+                                </span>
+                            </td>
+                            <td width="1%">
+                                <span>:</span>
+                            </td>
+                            <td width="23%">
+                                <!-- <span t-esc="o.date.strftime('%d/%m/%Y')" /> -->
+                            </td>
+                            <td width="10%">
+                                <span>
+                                    <p>Tanggal </p>
+                                </span>
+                            </td>
+                            <td width="1%">
+                                <span>:</span>
+                            </td>
+                            <td width="22%">
+                                <!-- <span t-field="o.date"></span> -->
+                                <!-- <span t-esc="o.date.strftime('%d/%m/%Y')" /> -->
+                            </td>
+                            <td width="10%">
+                                <span>
+                                    <p>Tanggal </p>
+                                </span>
+                            </td>
+                            <td width="1%">
+                                <span>:</span>
+                            </td>
+                            <td width="22%">
+                                <!-- <span t-field="o.date"></span> -->
+                                <!-- <span t-esc="o.date.strftime('%d/%m/%Y')" /> -->
+                            </td>
+                        </tr>
+                    </table>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                </div>
+                <!-- </t> -->
+                <!-- </t> -->
             </t>
 
         </template>

@@ -189,6 +189,14 @@ class StockMoveInherit(models.Model):
             self.sign_pic_pembeli = self.pic_pembeli.sign_x
             return{}
     
+    @api.onchange('penyiap_barang')
+    def func_onchange_penyiap_barang(self):
+        if not self.penyiap_barang:
+            return{}
+        else:
+            self.sign_penyiap_barang = self.penyiap_barang.sign_x
+            return{}
+    
 
     # Penerima barang
     penerima_barang = fields.Many2one('res.users',string='Penerima barang')
@@ -231,10 +239,11 @@ class StockMoveInherit(models.Model):
         readonly=False,
         default=fields.Datetime.now(),
     )
-
-    nomor_do = fields.Char(
-        string='Nomor DO',
-        required=False)
+    
+    nomor_do = fields.Many2one(
+        'approval',
+        string='Nomor Do'
+    )
 
     penerima_do = fields.Char(
         string='Penerima',
@@ -243,12 +252,6 @@ class StockMoveInherit(models.Model):
     received_by = fields.Char(
         string='Received By',
     )
-    
-    # pic_pembeli
-    
-    # penyiap_barang
-    
-    # penerima_do
     
     
     # Penyebab error usage
@@ -390,7 +393,7 @@ class StockMoveInherit(models.Model):
     #     related='divisi_id.department_code',
     #     readonly=True,
     # )
-
+#
     code_company = fields.Char(
         string='Code-Cop',
         readonly=True,)
@@ -400,4 +403,58 @@ class StockMoveInherit(models.Model):
         default=0,
         store=True,
     )
+    
+    
+class Approval(models.Model):
+    _name = "approval"
+    _description = "Print Out DO Wizard"
+
+    name = fields.Char(
+        string="Nomor DO"
+    )
+    
+    product_ids = fields.One2many(
+        'stock.move',
+        'nomor_do',
+        string='Product'
+    )
+    
+    nomor_po = fields.Many2one(
+        'stock.picking',
+        string="Nomor Transit",
+    )
+    
+    purchase_id = fields.Many2one(
+        string='Nomor Po Test',
+        related='nomor_po.purchase_id'
+    )   
+        
+    
+class algoritma_pembelian_report_wizard(models.TransientModel):
+    _name = 'stock.picking.report.wizard'
+    _description ="Print Stock Picking"
+    
+    nomor_do = fields.Many2one(
+        'approval', 
+        string='Nomor_wo'
+    )
+    
+    def debug_v2(self):
+
+        domain =[]
+        
+
+        nomor_do = self.nomor_do
+        if nomor_do:
+            domain += [('nomor_do', '=', nomor_do.id)]
+        stocks = self.env['stock.move'].search_read(domain)
+        print("domain", domain)
+        
+        data={
+            'form':self.read()[0],
+            'stocks': stocks
+        }
+        return self.env.ref('barokah_module.actions_print_stock_picking').report_action(self, data=data)
+
+    
     
