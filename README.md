@@ -6,6 +6,7 @@
 4. create config
 5. ketik odoo
 6.  paste dengan file ini 
+7. Matikan advision anti virus
 // -- ------------------------------------
 // -- Perhatian
 // -- Khusus untuk Windows User : 
