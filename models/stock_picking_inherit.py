@@ -413,20 +413,9 @@ class Approval(models.Model):
         string="Nomor DO"
     )
     
-    product_ids = fields.One2many(
-        'stock.move',
-        'nomor_do',
-        string='Product'
-    )
-    
-    nomor_po = fields.Many2one(
-        'stock.picking',
-        string="Nomor Transit",
-    )
-    
     purchase_id = fields.Many2one(
-        string='Nomor Po Test',
-        related='nomor_po.purchase_id'
+        'purchase.order',
+        string='Nomor Po'
     )   
         
     
@@ -439,20 +428,31 @@ class algoritma_pembelian_report_wizard(models.TransientModel):
         string='Nomor_wo'
     )
     
+    purchase_id = fields.Many2one(
+        related='nomor_do.purchase_id',
+        string="Nomor PO",
+    )
+    
     def debug_v2(self):
-
+        print("dHello World")
         domain =[]
-        
-
+        test=[]
         nomor_do = self.nomor_do
+        purchase_id =self.purchase_id
+        
         if nomor_do:
             domain += [('nomor_do', '=', nomor_do.id)]
+            test += [('name', '=', nomor_do.name)]
+            
         stocks = self.env['stock.move'].search_read(domain)
-        print("domain", domain)
+        testt = self.env['approval'].search_read(test)
+        print("stocks", stocks)
+        print("testt", testt)
         
         data={
             'form':self.read()[0],
-            'stocks': stocks
+            'stocks': stocks,
+            'testt': testt
         }
         return self.env.ref('barokah_module.actions_print_stock_picking').report_action(self, data=data)
 

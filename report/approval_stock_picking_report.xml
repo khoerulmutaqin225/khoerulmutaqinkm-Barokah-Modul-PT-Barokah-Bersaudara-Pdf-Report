@@ -43,7 +43,7 @@
                                 <span>:</span>
                             </td>
                             <td width="44%">
-                                <!-- <span t-field="line.nomor_do"></span> -->
+                                                           <!-- <span t-field="line.nomor_do"></span> -->
                                 <t t-esc="form['nomor_do'][1]" />
                                 <!-- <span>1</span> -->
 
@@ -63,10 +63,11 @@
                             <td width="1%">
                                 <span>:</span>
                             </td>
-                            <td width="44%">
-                                <span>HERU</span>
-                                <!-- <span t-field="o.name"></span> -->
-                            </td>
+                            <t t-foreach="testt" t-as="x">
+                                <td width="44%">
+                                    <span t-esc="x['purchase_id'][1]"></span>
+                                </td>
+                            </t>
                             <td colspan="2" width="45%">
                                 <span>
                                     ........................................................................</span>
@@ -95,22 +96,6 @@
                         style="border-collapse: collapse">
                         <tr>
                             <th>
-                                <span>Test</span>
-                                <!-- <span t-field="o.name"></span> -->
-                            </th>
-                            <th colspan="2" align-text="center">
-                                <!-- <span t-field="o.name"></span> -->
-                                <span>Test</span>
-
-                            </th>
-                            <th>
-                                <!-- <span t-field="o.name"></span> -->
-                                <span>Test</span>
-
-                            </th>
-                        </tr>
-                        <tr>
-                            <th>
                                 <span>Banyaknya</span>
                             </th>
                             <th colspan="2" align-text="center">
@@ -121,51 +106,49 @@
                             </th>
                         </tr>
                         <!-- Melakukan Pengkondisian di odoo -->
-                        <!--<t
-                                t-set="i" t-value="1" />-->
+                        <t t-set="i" t-value="1" />
                         <t t-foreach="stocks" t-as="o">
                             <tr>
-                                <td>
+                                <td style="text-align: center">
+                                    <span t-esc="o['quantity_done']"></span>
+                                </td>
+                                <td style="text-align: center">
+                                    <span t-esc="o['product_uom'][1]"></span>
+                                </td>
+                                <td style="text-align: center">
                                     <span t-esc="o['name']"></span>
                                 </td>
-                                <td>
-                                    <span t-esc="o['name']"></span>
-                                </td>
-                                <td>
-                                    <span t-esc="o['name']"></span>
-                                </td>
-                                <td>
-                                    <span t-esc="o['name']"></span>
+                                <td style="text-align: center">
+                                    <span t-esc="o['date']"></span>
                                 </td>
                             </tr>
                         </t>
-
-                        <!-- <t t-if="i &lt; 6">
-                                    <t t-foreach="[1,2]" t-as="j">
-                                        <tr>
-                                            <td>
-                                                <span>
-                                                    <p style="color:white">x</p>
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <span>
-                                                    <p style="color:white">x</p>
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <span>
-                                                    <p style="color:white">x</p>
-                                                </span>
-                                            </td>
-                                            <td>
-                                                <span>
-                                                    <p style="color:white">x</p>
-                                                </span>
-                                            </td>
-                                        </tr>
-                                    </t>
-                                </t> -->
+                        <t t-if="i &lt; 6">
+                            <t t-foreach="[1,2]" t-as="j">
+                                <tr>
+                                    <td>
+                                        <span>
+                                            <p style="color:white">x</p>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <p style="color:white">x</p>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <p style="color:white">x</p>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span>
+                                            <p style="color:white">x</p>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </t>
+                        </t>
                     </table>
 
                     <br />
@@ -189,114 +172,119 @@
                             </td>
                         </tr>
 
-                        <!-- <t t-foreach="o.move_ids_without_package" t-as="line">
-                                    <t t-if="line_index &lt; 1">
-                                        <tr>
-                                            <td width="34%">
-                                                <span>
-                                                    <img
-                                                        t-attf-src="data:image/*;base64,{{line.sign_stock_penerima}}"
-                                                        t-att-alt="line.sign_stock_penerima"
-                                                        style="width: 200px;" />
-                                                </span>
-                                            </td>
-                                            <td width="33%">
-
-                                                <span>
-                                                    <img
-                                                        t-attf-src="data:image/*;base64,{{line.sign_pic_pembeli}}"
-                                                        t-att-alt="line.sign_pic_pembeli"
-                                                        style="width: 200px;" />
-                                                </span>
-                                            </td>
-                                            <td width="33%">
-                                                <span>
-                                                    <img
-                                                        t-attf-src="data:image/*;base64,{{line.sign_penyiap_barang}}"
-                                                        t-att-alt="line.sign_penyiap_barang"
-                                                        style="width: 200px;" />
-                                                </span>
-                                            </td>
-                                        </tr>
-                                    </t>
-                                </t> -->
+                        <t t-foreach="stocks" t-as="o">
+                            <t t-if="o_index &lt; 1">
+                                <tr>
+                                    <td width="34%">
+                                        <span>
+                                            <img
+                                                t-attf-src="data:image/*;base64,{{o['sign_stock_penerima']}}"
+                                                t-att-alt="o['sign_stock_penerima']"
+                                                style="width: 200px;" />
+                                        </span>
+                                        <!-- <span t-esc="o['name']"></span> -->
+                                    </td>
+                                    <td width="33%">
+                                        <span>
+                                            <img
+                                                t-attf-src="data:image/*;base64,{{o['sign_pic_pembeli']}}"
+                                                t-att-alt="o['sign_pic_pembeli']"
+                                                style="width: 200px;" />
+                                        </span>
+                                        <!-- <span t-esc="o['name']"></span> -->
+                                    </td>
+                                    <td width="33%">
+                                        <span>
+                                            <img
+                                                t-attf-src="data:image/*;base64,{{o['sign_penyiap_barang']}}"
+                                                t-att-alt="o['sign_penyiap_barang']"
+                                                style="width: 200px;" />
+                                        </span>
+                                        <!-- <span t-esc="o['name']"></span> -->
+                                    </td>
+                                </tr>
+                            </t>
+                        </t>
                     </table>
-
                     <br />
-
                     <table border="0" width="98.5%%">
-                        <tr>
-                            <td width="10%">
-                                <span>
-                                    <p>Nama </p>
-                                </span>
-                            </td>
-                            <td width="1%">
-                                <span>:</span>
-                            </td>
-                            <td width="23%">
-                                <span>Khoerul Mutaqin</span>
-                            </td>
-                            <td width="10%">
-                                <span>
-                                    <p>Nama </p>
-                                </span>
-                            </td>
-                            <td width="1%">
-                                <span>:</span>
-                            </td>
-                            <td width="22%">
-                                <span>Khoerul Mutaqin</span>
-                            </td>
-                            <td width="10%">
-                                <span>
-                                    <p>Nama </p>
-                                </span>
-                            </td>
-                            <td width="1%">
-                                <span>:</span>
-                            </td>
-                            <td width="22%">
-                                <span>Khoerul Mutaqin</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td width="10%">
-                                <span>
-                                    <p>Tanggal </p>
-                                </span>
-                            </td>
-                            <td width="1%">
-                                <span>:</span>
-                            </td>
-                            <td width="23%">
-                                <!-- <span t-esc="o.date.strftime('%d/%m/%Y')" /> -->
-                            </td>
-                            <td width="10%">
-                                <span>
-                                    <p>Tanggal </p>
-                                </span>
-                            </td>
-                            <td width="1%">
-                                <span>:</span>
-                            </td>
-                            <td width="22%">
-                                <!-- <span t-field="o.date"></span> -->
-                                <!-- <span t-esc="o.date.strftime('%d/%m/%Y')" /> -->
-                            </td>
-                            <td width="10%">
-                                <span>
-                                    <p>Tanggal </p>
-                                </span>
-                            </td>
-                            <td width="1%">
-                                <span>:</span>
-                            </td>
-                            <td width="22%">
-                                <!-- <span t-field="o.date"></span> -->
-                                <!-- <span t-esc="o.date.strftime('%d/%m/%Y')" /> -->
-                            </td>
-                        </tr>
+                        <t t-foreach="stocks" t-as="o">
+                            <t t-if="o_index &lt; 1">
+                                <tr>
+                                    <td width="10%">
+                                        <span>
+                                            <p>Nama </p>
+                                        </span>
+                                    </td>
+                                    <td width="1%">
+                                        <span>:</span>
+                                    </td>
+                                    <td width="23%">
+                                        <span>Khoerul Mutaqin</span>
+                                    </td>
+                                    <td width="10%">
+                                        <span>
+                                            <p>Nama </p>
+                                        </span>
+                                    </td>
+                                    <td width="1%">
+                                        <span>:</span>
+                                    </td>
+                                    <td width="22%">
+                                        <span>Khoerul Mutaqin</span>
+                                    </td>
+                                    <td width="10%">
+                                        <span>
+                                            <p>Nama </p>
+                                        </span>
+                                    </td>
+                                    <td width="1%">
+                                        <span>:</span>
+                                    </td>
+                                    <td width="22%">
+                                        <span>Khoerul Mutaqin</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td width="10%">
+                                        <span>
+                                            <p>Tanggal </p>
+                                        </span>
+                                    </td>
+                                    <td width="1%">
+                                        <span>:</span>
+                                    </td>
+                                    <td width="23%">
+                                        <!-- <span t-esc="o['date'].strftime('%d/%m/%Y')"></span> -->
+                                        <span t-esc="o['date']"   t-options='{"widget": "date"}'></span>
+                                    </td>
+                                    <td width="10%">
+                                        <span>
+                                            <p>Tanggal </p>
+                                        </span>
+                                    </td>
+                                    <td width="1%">
+                                        <span>:</span>
+                                    </td>
+                                    <td width="22%">
+                                        <!-- <span t-esc="o['date'].  t-field-options='{"format": "MM/dd/yyyy"}'strftime('%d/%m/%Y')"></span> -->
+                                        <span t-esc="o['date']"   t-options='{"widget": "date"}'></span>
+                                    </td>
+                                    <td width="10%">
+                                        <span>
+                                            <p>Tanggal </p>
+                                        </span>
+                                    </td>
+                                    <td width="1%">
+                                        <span>:</span>
+                                    </td>
+                                    <td width="22%">
+                                        <!-- <span t-esc="o['date'].  t-field-options='{"format": "MM/dd/yyyy"}'strftime('%d/%m/%Y')"></span> -->
+                                        <span t-esc="o['date']"  t-options='{"widget": "date"}'/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </t>
                     </table>
                     <br />
                     <br />
@@ -304,10 +292,7 @@
                     <br />
                     <br />
                 </div>
-                <!-- </t> -->
-                <!-- </t> -->
             </t>
-
         </template>
     </data>
 
